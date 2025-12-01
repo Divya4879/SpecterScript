@@ -36,10 +36,13 @@ export default function AncientScrollViewer({ pages, currentPage, onPageChange }
       .replace(/^### (.*$)/gm, '<h3 class="lesson-h3 terminal-text">$1</h3>')
       .replace(/\*\*(.*?)\*\*/g, '<strong class="lesson-bold glitch-text" data-text="$1">$1</strong>')
       .replace(/^\* (.*$)/gm, '<li class="lesson-li">$1</li>')
-      .replace(/(<li class="lesson-li">.*<\/li>)/gs, '<ul class="lesson-ul">$1</ul>')
       .split('\n')
       .map(line => {
         if (line.trim()) {
+          // Convert list items to proper ul tags
+          if (line.includes('<li class="lesson-li">')) {
+            return `<ul class="lesson-ul">${line}</ul>`;
+          }
           // Randomly apply haunting effects
           const rand = Math.random();
           if (rand < 0.1) return `<p class="lesson-p bleeding-text">${line}</p>`;
