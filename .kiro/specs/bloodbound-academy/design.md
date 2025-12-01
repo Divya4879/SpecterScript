@@ -2,7 +2,7 @@
 
 ## Overview
 
-SpecterScript is a Next.js 14 web application that transforms syllabus images into comprehensive, AI-generated lesson plans with a gothic horror aesthetic. The architecture follows a serverless model with a React-based frontend and API routes for backend processing. The system uses Google's Gemini 2.5 Flash API with vision capabilities for syllabus structure extraction and lesson plan generation, and relies entirely on CSS animations and keyframes for atmospheric effects (no Framer Motion).
+BloodBound Academy is a Next.js 14 web application that transforms syllabus images into comprehensive, AI-generated lesson plans with a gothic horror aesthetic. The architecture follows a serverless model with a React-based frontend and API routes for backend processing. The system uses Google's Gemini 2.5 Flash API with vision capabilities for syllabus structure extraction and lesson plan generation, and relies entirely on CSS animations and keyframes for atmospheric effects (no Framer Motion).
 
 The application flow: User uploads syllabus image → AI vision analysis extracts structure → User selects topic → AI generates lesson plan → Display in ancient scroll viewer → Export options (TXT/Markdown).
 
@@ -386,7 +386,7 @@ interface AppState {
 **Test Tagging**: Each property-based test includes a comment with this format:
 ```javascript
 /**
- * Feature: specterscript-generator, Property {number}: {property description}
+ * Feature: bloodbound-academy, Property {number}: {property description}
  * Validates: Requirements {requirement numbers}
  */
 ```
@@ -397,14 +397,14 @@ interface AppState {
    - Location: `lib/__tests__/validation.test.ts`
    - Generates random file sizes from 0 to 20 MB
    - Verifies files ≤ 10 MB are accepted, files > 10 MB are rejected
-   - **Feature: specterscript-generator, Property 1: File size validation boundary**
+   - **Feature: bloodbound-academy, Property 1: File size validation boundary**
    - **Validates: Requirements 1.3**
 
 2. **Property 2 Test**: Image extension validation
    - Location: `lib/__tests__/validation.test.ts`
    - Generates random file extensions (including image types and non-image types)
    - Verifies only image/* MIME types are accepted
-   - **Feature: specterscript-generator, Property 2: Image type validation**
+   - **Feature: bloodbound-academy, Property 2: Image type validation**
    - **Validates: Requirements 1.2**
 
 3. **Property 4 Test**: Chunk division completeness
@@ -412,7 +412,7 @@ interface AppState {
    - Generates random text strings of varying lengths (0 to 100,000 characters)
    - Chunks with random chunk sizes (100 to 50,000 characters)
    - Verifies concatenation equals original text
-   - **Feature: specterscript-generator, Property 4: Chunk division completeness**
+   - **Feature: bloodbound-academy, Property 4: Chunk division completeness**
    - **Validates: Requirements 4.1**
 
 4. **Property 9 Test**: Export format round-trip for text
@@ -420,7 +420,7 @@ interface AppState {
    - Generates random lesson plan content with special characters and Unicode
    - Exports as TXT, re-imports via Blob API
    - Verifies content equality including whitespace and line breaks
-   - **Feature: specterscript-generator, Property 9: Export format round-trip for text**
+   - **Feature: bloodbound-academy, Property 9: Export format round-trip for text**
    - **Validates: Requirements 7.4**
 
 ### Integration Testing
