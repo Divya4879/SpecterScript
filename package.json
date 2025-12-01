@@ -16,6 +16,11 @@
   "type": "commonjs",
   "dependencies": {
     "@google/genai": "^1.30.0",
+    "@types/node": "^24.10.1",
+    "@types/pdf-parse": "^1.1.5",
+    "@types/pdfkit": "^0.17.4",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.22",
     "fast-check": "^4.3.0",
     "framer-motion": "^12.23.24",
@@ -33,11 +38,6 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
     "@types/jest": "^30.0.0",
-    "@types/node": "^24.10.1",
-    "@types/pdf-parse": "^1.1.5",
-    "@types/pdfkit": "^0.17.4",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
     "jest-environment-jsdom": "^30.2.0",
     "ts-jest": "^29.4.5"
   }
