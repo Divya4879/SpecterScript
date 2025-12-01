@@ -34,20 +34,20 @@ export default function LandingPage() {
             <div className="skull-decoration mb-6">💀⚰️💀</div>
             
             <h1 className="font-cinzel text-7xl md:text-9xl text-blood-red mb-8 text-shadow-deep typewriter-effect">
-              𝕾𝖕𝖊𝖈𝖙𝖊𝖗𝕾𝖈𝖗𝖎𝖕𝖙
+              𝔅𝔩𝔬𝔬𝔡𝔅𝔬𝔲𝔫𝔡 𝔄𝔠𝔞𝔡𝔢𝔪𝔶
             </h1>
             
             <div className="blood-drip-line mb-8"></div>
             
             <p className="font-cinzel text-3xl md:text-4xl text-ember-orange mb-6 glow-pulse">
-              ℌ𝔞𝔯𝔳𝔢𝔰𝔱 𝔎𝔫𝔬𝔴𝔩𝔢𝔡𝔤𝔢 𝔣𝔯𝔬𝔪 𝔞 𝔇𝔞𝔯𝔨 ℌ𝔞𝔯𝔳𝔢𝔰𝔱
+              𝔚𝔥𝔢𝔯𝔢 𝔎𝔫𝔬𝔴𝔩𝔢𝔡𝔤𝔢 ℌ𝔞𝔲𝔫𝔱𝔰 𝔞𝔫𝔡 𝔏𝔢𝔞𝔯𝔫𝔦𝔫𝔤 𝔏𝔦𝔳𝔢𝔰 𝔈𝔱𝔢𝔯𝔫𝔞𝔩
             </p>
             
             <div className="ancient-scroll-bg p-8 mb-10">
               <p className="font-crimson text-xl md:text-2xl text-parchment leading-relaxed italic">
-                "In the depths of forgotten tomes lies wisdom untold...<br/>
+                "Transform your ordinary PDF coursework into haunted, gothic horror lesson plans...<br/>
                 Upload thy cursed PDFs and witness as ancient AI spirits<br/>
-                weave comprehensive lesson plans from the very essence of knowledge itself."
+                weave comprehensive educational content from the very essence of knowledge itself."
               </p>
             </div>
 
