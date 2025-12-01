@@ -1,134 +1,306 @@
-# SpecterScript
+# 🧛‍♂️ SpecterScript - Haunted PDF Lesson Plan Generator
 
-Transform your PDF coursework into haunted, gothic horror versions using AI.
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![Gemini AI](https://img.shields.io/badge/Gemini-AI-4285F4?logo=google)](https://ai.google.dev/)
 
-## Features
+> Transform your ordinary PDF coursework into haunted, gothic horror lesson plans with immersive vampire-themed UI and spine-chilling interactive effects.
 
-- 📄 PDF upload with drag-and-drop support
-- 🎃 AI-powered haunted text transformation using Gemini 2.5 Pro
-- 👻 Atmospheric gothic viewer with flickering candles and fog effects
-- 📖 Page-by-page navigation with glitch transitions
-- 💾 Export to PDF, Markdown, or TXT formats
-- ♿ Accessibility features including non-flicker mode
-- 🔒 Secure processing with no permanent file storage
+## 🎃 Overview
 
-## Getting Started
+SpecterScript is a Halloween-themed web application built for the **Kiroween Hackathon** (Costume Contest category) that combines educational technology with horror aesthetics. Upload PDF syllabi or course materials, and watch as AI transforms them into comprehensive lesson plans while surrounded by atmospheric vampire effects, interactive blood trails, and haunting audio.
+
+### 🏆 Hackathon Category: Costume Contest
+- **Haunting User Interface**: Polished vampire theme with blood effects, crawling spiders, and atmospheric elements
+- **Interactive Horror Effects**: Blood cursor trails, screen cracks, lightning flashes, and phantom notifications
+- **Immersive Audio**: 14 layered horror sound effects including vampire ambience, heartbeats, and thunder
+- **Functional Application**: Real PDF processing with AI-powered lesson plan generation
+
+## ✨ Features
+
+### 🧛‍♂️ Vampire Theme Interface
+- **Blood Moon & Atmospheric Effects**: Animated blood moon, rolling fog, and moving shadows
+- **Interactive Blood Trails**: Mouse cursor leaves fading blood droplets
+- **Screen Crack Effects**: Glass crack animations on every click with sound
+- **Crawling Spiders**: Large animated spiders crawling up and down screen edges
+- **Flying Bats**: Animated vampire bats with wing-flapping effects
+- **Lightning Flashes**: Random lightning illumination with thunder sounds
+
+### 📜 Ancient Scroll Viewer
+- **Parchment-Style Display**: Lesson plans displayed on aged scroll with ornate decorations
+- **Flickering Candles**: Animated candle flames providing atmospheric lighting
+- **Page Transitions**: Smooth scroll animations with creaking door sounds
+- **Gothic Typography**: Custom fonts (Cinzel, Crimson Text) for authentic medieval feel
+- **Glitch Text Effects**: Random text corruption and self-correction animations
+
+### 🎵 Immersive Audio System
+- **14 Horror Sound Effects**: Vampire ambience, heartbeat, thunder, whispers, footsteps
+- **Contextual Audio**: Sounds triggered by user interactions and visual effects
+- **Layered Soundscape**: Multiple ambient tracks create atmospheric depth
+- **Smart Volume Control**: Optimized levels for each sound type
+- **Audio Toggle**: Mute/unmute control respecting browser policies
+
+### 🤖 AI-Powered Processing
+- **Gemini 2.5 Pro Integration**: Advanced AI for content transformation
+- **Intelligent Chunking**: Handles large PDFs with smart text segmentation
+- **Syllabus Analysis**: Extracts course structure and learning objectives
+- **Lesson Plan Generation**: Creates comprehensive educational content
+- **Multiple Export Formats**: PDF, Markdown, and plain text downloads
+
+### 🔧 Technical Features
+- **Drag & Drop Upload**: Intuitive file upload with visual feedback
+- **Real-time Processing**: Live progress indicators with heartbeat audio
+- **Error Handling**: Graceful fallbacks with spooky error messages
+- **Responsive Design**: Works on desktop and mobile devices
+- **Type Safety**: Full TypeScript implementation
+- **Performance Optimized**: Efficient rendering and audio management
+
+## 🚀 Quick Start
 
 ### Prerequisites
-
-- Node.js 18+ installed
-- A Google Gemini API key ([Get one here](https://makersuite.google.com/app/apikey))
+- Node.js 18+ 
+- npm or yarn
+- Gemini API key from Google AI Studio
 
 ### Installation
 
-1. Clone the repository
-2. Install dependencies:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/specter-script.git
+   cd specter-script
+   ```
 
-```bash
-npm install
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment setup**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Add your Gemini API key:
+   ```env
+   GEMINI_API_KEY=your_api_key_here
+   ```
+
+4. **Run development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open application**
+   Navigate to `http://localhost:3000`
+
+## 🎮 Usage Guide
+
+### 1. Landing Page
+- **Atmospheric Entry**: Experience ravens flying, lightning flashes, and floating spirits
+- **Gothic Welcome**: Dramatic title with typewriter effects and blood drip animations
+- **Feature Overview**: Three cards showcasing Ancient Tome Harvest, AI Sorcery, and Arcane Harvest
+
+### 2. Generator Interface
+- **Sacrificial Altar**: Drag and drop PDF files (up to 10MB)
+- **Visual Feedback**: Animated upload zone with spirit orbs and gothic styling
+- **File Validation**: Accepts PDF files with spooky error messages for invalid uploads
+
+### 3. Processing Experience
+- **Heartbeat Audio**: Intensifying heartbeat during AI processing
+- **Progress Indicators**: Visual feedback with gothic styling
+- **Typewriter Sounds**: Audio feedback during text generation
+- **Blood Effects**: Enhanced atmospheric effects during processing
+
+### 4. Scroll Viewer
+- **Ancient Parchment**: Lesson plans displayed on aged scroll background
+- **Navigation Controls**: Previous/Next buttons with door creak sounds
+- **Page Indicators**: Gothic-styled page counters
+- **Candle Lighting**: Flickering candles provide ambient lighting
+- **Text Effects**: Random glitch, bleeding, and terminal-style text
+
+### 5. Export Options
+- **Multiple Formats**: Download as PDF, Markdown, or plain text
+- **Gothic Styling**: Export controls match vampire theme
+- **Audio Feedback**: Page turn sounds on export actions
+
+## 🏗️ Architecture
+
+### Frontend Stack
+- **Next.js 14**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **TailwindCSS**: Utility-first styling with custom gothic palette
+- **Framer Motion**: Smooth animations and transitions
+
+### Backend Services
+- **API Routes**: Serverless functions for file processing
+- **Gemini AI**: Google's advanced language model for content transformation
+- **PDF Processing**: Text extraction and validation
+- **Audio Management**: Preloaded sound effects with smart playback
+
+### File Structure
+```
+specter-script/
+├── .kiro/specs/           # Kiro development specifications
+├── app/
+│   ├── api/               # API routes (upload, haunt, export)
+│   ├── generator/         # Main generator page
+│   ├── globals.css        # Global styles and vampire theme
+│   └── layout.tsx         # Root layout with gothic fonts
+├── components/
+│   ├── AncientScrollViewer.tsx    # Parchment scroll display
+│   ├── AudioManager.tsx           # Horror sound system
+│   ├── HauntingEffects.tsx       # Interactive effects
+│   ├── UploadZone.tsx            # File upload interface
+│   └── VampireAudio.tsx          # Ambient vampire sounds
+├── hooks/
+│   └── useTheme.ts        # Theme management
+├── lib/
+│   ├── chunking.ts        # Text processing utilities
+│   ├── export.ts          # File export functions
+│   └── validation.ts      # Input validation
+└── public/
+    └── *.mp3             # 14 horror sound effects
 ```
 
-3. Set up environment variables:
+## 🎨 Design System
 
-Copy `.env.example` to `.env.local` and add your Gemini API key:
+### Color Palette
+- **Deep Black**: `#0A0000` - Primary background
+- **Blood Red**: `#8B0000` - Accent color for interactive elements
+- **Crimson**: `#DC143C` - Secondary highlights
+- **Parchment**: `#F5F5DC` - Text color
+- **Charred Grey**: `#2C2C2C` - Surface elements
 
+### Typography
+- **Cinzel**: Gothic serif for headings and titles
+- **Crimson Text**: Elegant serif for body text
+- **Special Elite**: Typewriter font for terminal effects
+- **Courier New**: Monospace for system messages
+
+### Animations
+- **Blood Trails**: Fading red droplets following cursor
+- **Screen Cracks**: Glass break effect on clicks
+- **Lightning Flashes**: Random illumination with thunder
+- **Text Glitches**: Corruption and self-correction effects
+- **Floating Elements**: Smooth movement of atmospheric objects
+
+## 🔊 Audio Design
+
+### Ambient Layers
+- **Vampire Atmosphere**: Base ambient horror soundscape
+- **Wind Effects**: Continuous atmospheric wind
+- **Random Events**: Footsteps, drips, whispers every 5 seconds
+
+### Interactive Sounds
+- **Click Feedback**: Glass break on screen interactions
+- **Page Navigation**: Door creaks and page turns
+- **Processing Audio**: Heartbeat during AI work
+- **Error Sounds**: Bell tolls and static for system errors
+- **Scare Effects**: Ghost sounds for jump scares
+
+### Technical Implementation
+- **Preloaded Audio**: All sounds loaded on app start
+- **Smart Volume**: Optimized levels for each sound type
+- **Browser Compliance**: Respects autoplay policies
+- **Performance**: Efficient audio management without memory leaks
+
+## 🧪 Testing
+
+### Test Coverage
+- **Component Tests**: React Testing Library for UI components
+- **Utility Tests**: Jest for business logic functions
+- **API Tests**: Integration tests for backend routes
+- **Audio Tests**: Mocked audio functionality testing
+
+### Running Tests
 ```bash
-GEMINI_API_KEY=your_gemini_api_key_here
-NEXT_PUBLIC_MAX_FILE_SIZE=10485760
-NODE_ENV=development
+# Run all tests
+npm test
+
+# Run with coverage
+npm run test:coverage
+
+# Run specific test file
+npm test -- AncientScrollViewer.test.tsx
 ```
 
-### Development
+## 🚀 Deployment
 
-Run the development server:
+### Vercel (Recommended)
+1. Connect GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically on push to main branch
 
+### Manual Deployment
 ```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build
-
-Build for production:
-
-```bash
+# Build production version
 npm run build
+
+# Start production server
 npm start
 ```
 
-## Deployment
-
-### Deploy to Vercel
-
-1. Push your code to a Git repository (GitHub, GitLab, or Bitbucket)
-
-2. Import your project to Vercel:
-   - Go to [vercel.com](https://vercel.com)
-   - Click "Add New Project"
-   - Import your repository
-
-3. Configure environment variables in Vercel:
-   - Add `GEMINI_API_KEY` with your API key
-   - Add `NEXT_PUBLIC_MAX_FILE_SIZE` (default: 10485760)
-
-4. Deploy:
-   - Vercel will automatically build and deploy your application
-   - The `vercel.json` configuration sets function timeout to 60 seconds and memory to 1024 MB
-
-5. Test your deployment:
-   - Upload various PDF files (small, large, multi-page)
-   - Verify text extraction works correctly
-   - Test AI transformation with different content
-   - Check all export formats (PDF, Markdown, TXT)
-   - Verify animations and effects render properly
-   - Test accessibility features (non-flicker mode, audio toggle)
-
-### Vercel Configuration
-
-The project includes a `vercel.json` file that configures:
-- Function timeout: 60 seconds (for AI processing)
-- Memory allocation: 1024 MB (for PDF processing)
-
-## Tech Stack
-
-- **Framework**: Next.js 14 (App Router)
-- **Styling**: TailwindCSS with custom gothic theme
-- **Animations**: Framer Motion + CSS keyframes
-- **PDF Processing**: pdf-parse, pdfkit
-- **AI**: Google Gemini 2.5 Pro API
-- **Testing**: fast-check (property-based testing)
-
-## Project Structure
-
-```
-├── app/
-│   ├── layout.tsx          # Root layout with fonts
-│   ├── page.tsx            # Home page
-│   ├── globals.css         # Global styles and animations
-│   └── api/                # API routes (to be implemented)
-├── components/             # React components (to be implemented)
-├── .env.local              # Environment variables (not in git)
-├── .env.example            # Example environment variables
-├── tailwind.config.js      # TailwindCSS configuration
-└── next.config.mjs         # Next.js configuration
+### Environment Variables
+```env
+GEMINI_API_KEY=your_gemini_api_key
+NEXT_PUBLIC_APP_URL=https://your-domain.com
 ```
 
-## Gothic Design System
+## 🎯 Kiroween Hackathon Integration
 
-### Color Palette
-- Deep Black: `#0a0a0a`
-- Charred Grey: `#1a1a1a`
-- Blood Red: `#8b0000`
-- Parchment: `#d4c5b9`
-- Ember Orange: `#ff6b35`
+### Kiro Spec-Driven Development
+This project showcases effective use of Kiro's spec-driven development approach:
 
-### Typography
-- Primary: Cinzel (gothic serif)
-- Body: Crimson Text (readable serif)
-- Monospace: Special Elite (typewriter)
+- **Requirements Specification**: Detailed user stories and acceptance criteria in `.kiro/specs/requirements.md`
+- **Design Architecture**: Complete system design and component structure in `.kiro/specs/design.md`
+- **Implementation Tasks**: Broken down development tasks with progress tracking in `.kiro/specs/tasks.md`
 
-## License
+### How Kiro Enhanced Development
+1. **Structured Planning**: Kiro specs provided clear roadmap for complex horror-themed UI
+2. **Component Design**: Detailed specifications enabled rapid component development
+3. **Feature Implementation**: Task breakdown helped manage multiple interactive effects
+4. **Quality Assurance**: Spec-driven approach ensured all requirements were met
 
-MIT
-# SpecterScript
+## 🏆 Costume Contest Features
+
+### Haunting User Interface
+- **Polished Design**: Professional-grade vampire theme with attention to detail
+- **Interactive Elements**: Blood trails, screen cracks, and atmospheric effects
+- **Audio Integration**: Immersive soundscape enhancing the horror experience
+- **Smooth Animations**: Fluid transitions and effects throughout the application
+
+### Technical Excellence
+- **Performance**: Optimized rendering and audio management
+- **Accessibility**: Proper contrast ratios and audio controls
+- **Responsiveness**: Works across different screen sizes
+- **Error Handling**: Graceful fallbacks with themed error messages
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Kiroween Hackathon**: For inspiring this spooky creation
+- **Google Gemini AI**: For powerful content transformation capabilities
+- **Horror Sound Libraries**: For atmospheric audio effects
+- **Gothic Font Designers**: For authentic medieval typography
+- **Open Source Community**: For the amazing tools and libraries
+
+## 📞 Contact
+
+- **GitHub**: [@yourusername](https://github.com/yourusername)
+- **Email**: your.email@example.com
+- **Demo**: [Live Application](https://specter-script.vercel.app)
+
+---
+
+*"In the depths of forgotten tomes lies wisdom untold... Upload thy cursed PDFs and witness as ancient AI spirits weave comprehensive lesson plans from the very essence of knowledge itself."* 🧛‍♂️📜✨
