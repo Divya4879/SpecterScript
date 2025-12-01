@@ -1,21 +1,29 @@
-# 🧛‍♂️ BloodBound Academy - Haunted Image-to-Lesson Plan Generator
+# 🧛‍♂️ BloodBound Academy
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![Gemini AI](https://img.shields.io/badge/Gemini-AI-4285F4?logo=google)](https://ai.google.dev/)
+[![Gemini AI API](https://img.shields.io/badge/Gemini-AI-4285F4?logo=google)](https://ai.google.dev/)
 
-> Transform your ordinary image coursework into haunted, gothic horror lesson plans with immersive vampire-themed UI and spine-chilling interactive effects.
+Transform your ordinary image coursework into magical study aids with immersive vampire-themed UI and spine-chilling interactive effects.
+
+Check it out here:- https://bloodbound-academy.netlify.app
+
+<img width="1920" height="1692" alt="bloodbound acad" src="https://github.com/user-attachments/assets/a0faa61f-f2c6-4cd4-ad33-247340007e67" />
+
+---
 
 ## 🎃 Overview
 
 BloodBound Academy is a Halloween-themed web application built for the **Kiroween Hackathon** (Costume Contest category) that combines educational technology with horror aesthetics. Upload image files of syllabi or course materials, and watch as OCR extracts the text while AI transforms it into comprehensive lesson plans surrounded by atmospheric vampire effects, interactive blood trails, and haunting audio.
 
 ### 🏆 Hackathon Category: Costume Contest
-- **Haunting User Interface**: Polished vampire theme with blood effects, crawling spiders, and atmospheric elements
+- **Haunting User Interface**: Polished vampire theme with dripping blood effects, crawling spiders, and atmospheric elements
 - **Interactive Horror Effects**: Blood cursor trails, screen cracks, lightning flashes, and phantom notifications
 - **Immersive Audio**: 14 layered horror sound effects including vampire ambience, heartbeats, and thunder
-- **Functional Application**: Real PDF processing with AI-powered lesson plan generation
+- **Functional Application**: Real Image Content Extraction  with AI-powered study guides generation
+
+---
 
 ## ✨ Features
 
@@ -28,7 +36,7 @@ BloodBound Academy is a Halloween-themed web application built for the **Kirowee
 - **Lightning Flashes**: Random lightning illumination with thunder sounds
 
 ### 📜 Ancient Scroll Viewer
-- **Parchment-Style Display**: Lesson plans displayed on aged scroll with ornate decorations
+- **Parchment-Style Display**: Study Guide displayed on aged scroll with ornate decorations
 - **Flickering Candles**: Animated candle flames providing atmospheric lighting
 - **Page Transitions**: Smooth scroll animations with creaking door sounds
 - **Gothic Typography**: Custom fonts (Cinzel, Crimson Text) for authentic medieval feel
