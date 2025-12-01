@@ -45,9 +45,9 @@ export default function LandingPage() {
             
             <div className="ancient-scroll-bg p-8 mb-10">
               <p className="font-crimson text-xl md:text-2xl text-parchment leading-relaxed italic">
-                "Transform your ordinary PDF coursework into haunted, gothic horror lesson plans...<br/>
-                Upload thy cursed PDFs and witness as ancient AI spirits<br/>
-                weave comprehensive educational content from the very essence of knowledge itself."
+                "Extract the very soul from thy image scrolls using forbidden OCR rituals...<br/>
+                Upload thy cursed images and witness as ancient AI spirits<br/>
+                summon comprehensive lesson plans through dark incantations and mystical algorithms."
               </p>
             </div>
 

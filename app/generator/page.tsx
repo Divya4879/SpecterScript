@@ -77,12 +77,12 @@ export default function Generator() {
       });
 
       if (!uploadResponse.ok) {
-        throw new Error('Failed to extract text from PDF');
+        throw new Error('Failed to extract text from image');
       }
 
       const uploadData = await uploadResponse.json();
       if (!uploadData.success) {
-        throw new Error(uploadData.error || 'An error occurred during PDF processing.');
+        throw new Error(uploadData.error || 'An error occurred during image processing.');
       }
 
       if (uploadData.type === 'syllabus') {
@@ -320,7 +320,7 @@ export default function Generator() {
             <div className="skull-decoration mb-4">💀⚔️💀</div>
             
             <h1 className="font-cinzel text-6xl md:text-8xl text-blood-red mb-6 text-shadow-deep typewriter-effect">
-              𝔄𝔯𝔠𝔞𝔫𝔢 𝔄𝔩𝔠𝔥𝔢𝔪𝔶
+              𝔅𝔩𝔬𝔬𝔡𝔅𝔬𝔲𝔫𝔡 𝔄𝔠𝔞𝔡𝔢𝔪𝔶
             </h1>
             
             <div className="blood-drip-line mb-6"></div>

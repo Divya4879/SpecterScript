@@ -1,15 +1,15 @@
-# 🧛‍♂️ SpecterScript - Haunted PDF Lesson Plan Generator
+# 🧛‍♂️ BloodBound Academy - Haunted Image-to-Lesson Plan Generator
 
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 [![Gemini AI](https://img.shields.io/badge/Gemini-AI-4285F4?logo=google)](https://ai.google.dev/)
 
-> Transform your ordinary PDF coursework into haunted, gothic horror lesson plans with immersive vampire-themed UI and spine-chilling interactive effects.
+> Transform your ordinary image coursework into haunted, gothic horror lesson plans with immersive vampire-themed UI and spine-chilling interactive effects.
 
 ## 🎃 Overview
 
-SpecterScript is a Halloween-themed web application built for the **Kiroween Hackathon** (Costume Contest category) that combines educational technology with horror aesthetics. Upload PDF syllabi or course materials, and watch as AI transforms them into comprehensive lesson plans while surrounded by atmospheric vampire effects, interactive blood trails, and haunting audio.
+BloodBound Academy is a Halloween-themed web application built for the **Kiroween Hackathon** (Costume Contest category) that combines educational technology with horror aesthetics. Upload image files of syllabi or course materials, and watch as OCR extracts the text while AI transforms it into comprehensive lesson plans surrounded by atmospheric vampire effects, interactive blood trails, and haunting audio.
 
 ### 🏆 Hackathon Category: Costume Contest
 - **Haunting User Interface**: Polished vampire theme with blood effects, crawling spiders, and atmospheric elements
@@ -43,7 +43,7 @@ SpecterScript is a Halloween-themed web application built for the **Kiroween Hac
 
 ### 🤖 AI-Powered Processing
 - **Gemini 2.5 Pro Integration**: Advanced AI for content transformation
-- **Intelligent Chunking**: Handles large PDFs with smart text segmentation
+- **OCR Text Extraction**: Tesseract.js extracts text from images with smart processing
 - **Syllabus Analysis**: Extracts course structure and learning objectives
 - **Lesson Plan Generation**: Creates comprehensive educational content
 - **Multiple Export Formats**: PDF, Markdown, and plain text downloads
