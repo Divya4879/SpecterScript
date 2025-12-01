@@ -1,0 +1,3754 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --deep-black: #0a0a0a;
+  --charred-grey: #1a1a1a;
+  --blood-red: #8b0000;
+  --parchment: #d4c5b9;
+  --ember-orange: #ff6b35;
+}
+
+body {
+  font-family: var(--font-crimson), serif;
+  background-color: var(--deep-black);
+  color: var(--parchment);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cinzel), serif;
+}
+
+/* Custom cursor for haunted viewer */
+.ghost-cursor {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs><radialGradient id="glow"><stop offset="0%%" stop-color="%23ff6b35" stop-opacity="0.8"/><stop offset="50%%" stop-color="%23ff6b35" stop-opacity="0.4"/><stop offset="100%%" stop-color="%23ff6b35" stop-opacity="0"/></radialGradient></defs><circle cx="16" cy="16" r="12" fill="url(%23glow)"/><circle cx="16" cy="16" r="6" fill="%23ff6b35" opacity="0.9"/></svg>'), auto;
+}
+
+/* Text shadow utility */
+.text-shadow-gothic {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Candle flicker animation - oscillating flame effect */
+@keyframes candleFlicker {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1) translateY(0) translateZ(0); 
+    filter: brightness(1);
+  }
+  15% { 
+    opacity: 0.85; 
+    transform: scale(0.98) translateY(1px) translateZ(0); 
+    filter: brightness(0.9);
+  }
+  30% { 
+    opacity: 0.95; 
+    transform: scale(1.02) translateY(-1px) translateZ(0); 
+    filter: brightness(1.1);
+  }
+  45% { 
+    opacity: 0.8; 
+    transform: scale(0.97) translateY(2px) translateZ(0); 
+    filter: brightness(0.85);
+  }
+  60% { 
+    opacity: 0.9; 
+    transform: scale(1.01) translateY(-1px) translateZ(0); 
+    filter: brightness(1.05);
+  }
+  75% { 
+    opacity: 0.88; 
+    transform: scale(0.99) translateY(1px) translateZ(0); 
+    filter: brightness(0.95);
+  }
+}
+
+.candle-flicker {
+  animation: candleFlicker 3s ease-in-out infinite;
+  will-change: transform, opacity, filter;
+}
+
+/* Candle flame glow effect */
+.candle-flame {
+  position: relative;
+  box-shadow: 
+    0 0 20px rgba(255, 107, 53, 0.6),
+    0 0 40px rgba(255, 107, 53, 0.4),
+    0 0 60px rgba(255, 107, 53, 0.2);
+}
+
+/* Fog overlay with animated movement */
+@keyframes fogDrift {
+  0%, 100% {
+    background-position: 0% 0%;
+    opacity: 0.6;
+  }
+  25% {
+    background-position: 20% 10%;
+    opacity: 0.7;
+  }
+  50% {
+    background-position: 40% 20%;
+    opacity: 0.5;
+  }
+  75% {
+    background-position: 20% 10%;
+    opacity: 0.65;
+  }
+}
+
+.fog-overlay {
+  backdrop-filter: blur(2px);
+  background: 
+    linear-gradient(
+      180deg,
+      rgba(26, 26, 26, 0.3) 0%,
+      rgba(26, 26, 26, 0.1) 50%,
+      rgba(26, 26, 26, 0.3) 100%
+    ),
+    radial-gradient(
+      circle at 30% 40%,
+      rgba(139, 0, 0, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(139, 0, 0, 0.08) 0%,
+      transparent 50%
+    );
+  background-size: 100% 100%, 200% 200%, 200% 200%;
+  animation: fogDrift 20s ease-in-out infinite;
+  will-change: background-position, opacity;
+}
+
+/* Spectral glow on hover */
+.spectral-glow {
+  transition: text-shadow 0.3s ease;
+  will-change: text-shadow;
+}
+
+.spectral-glow:hover {
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.8);
+}
+
+/* Shaking text effect */
+@keyframes shake {
+  0%, 100% { transform: translateX(0) translateZ(0); }
+  25% { transform: translateX(-2px) rotate(-1deg) translateZ(0); }
+  75% { transform: translateX(2px) rotate(1deg) translateZ(0); }
+}
+
+.shake-hover:hover {
+  animation: shake 0.3s ease-in-out;
+  will-change: transform;
+}
+
+/* Parchment texture */
+.parchment-texture {
+  background-image: 
+    linear-gradient(rgba(212, 197, 185, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 197, 185, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Floating ember particle effect */
+@keyframes emberFloat {
+  0% {
+    transform: translateY(0) translateX(0) scale(1) translateZ(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) translateX(20px) scale(0.8) translateZ(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-200px) translateX(-10px) scale(0.3) translateZ(0);
+    opacity: 0;
+  }
+}
+
+.ember-particle {
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ff6b35 0%, #ff4500 50%, transparent 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px rgba(255, 107, 53, 0.8),
+    0 0 20px rgba(255, 107, 53, 0.4);
+  animation: emberFloat 3s ease-out forwards;
+  will-change: transform, opacity;
+  z-index: 10;
+}
+
+/* Idle flicker animation - random glitch effect */
+@keyframes idleFlicker {
+  0%, 100% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+  10% { 
+    opacity: 0.7; 
+    filter: brightness(0.6);
+  }
+  20% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+  30% { 
+    opacity: 0.8; 
+    filter: brightness(0.7);
+  }
+  40%, 60% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+  70% { 
+    opacity: 0.6; 
+    filter: brightness(0.5);
+  }
+  80% { 
+    opacity: 1; 
+    filter: brightness(1);
+  }
+}
+
+.idle-flicker {
+  animation: idleFlicker 0.3s ease-in-out;
+  will-change: opacity, filter;
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Enhanced button styling with depth */
+.gothic-button {
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(212, 197, 185, 0.1);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.gothic-button:hover {
+  box-shadow: 
+    0 0 20px rgba(139, 0, 0, 0.5),
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(212, 197, 185, 0.2);
+}
+
+/* Moving shadow effects */
+@keyframes shadowMove {
+  0%, 100% {
+    box-shadow: 
+      -5px -5px 15px rgba(0, 0, 0, 0.5),
+      5px 5px 15px rgba(139, 0, 0, 0.3);
+  }
+  25% {
+    box-shadow: 
+      5px -5px 15px rgba(0, 0, 0, 0.5),
+      -5px 5px 15px rgba(139, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 
+      5px 5px 15px rgba(0, 0, 0, 0.5),
+      -5px -5px 15px rgba(139, 0, 0, 0.3);
+  }
+  75% {
+    box-shadow: 
+      -5px 5px 15px rgba(0, 0, 0, 0.5),
+      5px -5px 15px rgba(139, 0, 0, 0.3);
+  }
+}
+
+.moving-shadow {
+  animation: shadowMove 8s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+/* Moving text shadow effect */
+@keyframes textShadowMove {
+  0%, 100% {
+    text-shadow: 
+      -2px -2px 4px rgba(0, 0, 0, 0.8),
+      2px 2px 4px rgba(139, 0, 0, 0.4);
+  }
+  25% {
+    text-shadow: 
+      2px -2px 4px rgba(0, 0, 0, 0.8),
+      -2px 2px 4px rgba(139, 0, 0, 0.4);
+  }
+  50% {
+    text-shadow: 
+      2px 2px 4px rgba(0, 0, 0, 0.8),
+      -2px -2px 4px rgba(139, 0, 0, 0.4);
+  }
+  75% {
+    text-shadow: 
+      -2px 2px 4px rgba(0, 0, 0, 0.8),
+      2px -2px 4px rgba(139, 0, 0, 0.4);
+  }
+}
+
+.moving-text-shadow {
+  animation: textShadowMove 6s ease-in-out infinite;
+  will-change: text-shadow;
+}
+
+/* Support for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .candle-flicker,
+  .shake-hover:hover,
+  .idle-flicker,
+  .ember-particle,
+  .fog-overlay,
+  .moving-shadow,
+  .moving-text-shadow {
+    animation: none !important;
+    will-change: auto !important;
+  }
+  
+  /* Maintain static styling without animations */
+  .candle-flicker {
+    opacity: 1;
+    transform: scale(1) translateY(0) translateZ(0);
+    filter: brightness(1);
+  }
+  
+  .fog-overlay {
+    background-position: 0% 0%;
+    opacity: 0.6;
+  }
+  
+  .moving-shadow {
+    box-shadow: 
+      0 0 20px rgba(139, 0, 0, 0.5),
+      -3px -3px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .moving-text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Professional Gothic Animations */
+
+/* Ravens flying across screen */
+@keyframes raven-flight {
+  0% { transform: translateX(-100px) translateY(0px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 100px)) translateY(-20px) rotate(5deg); opacity: 0; }
+}
+
+.raven-flight {
+  position: absolute;
+  top: 40%;
+  font-size: 2rem;
+  animation: raven-flight 20s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(139, 0, 0, 0.5));
+}
+
+/* Lightning flash effect */
+@keyframes lightning {
+  0%, 90%, 100% { opacity: 0; }
+  5%, 10% { opacity: 0.8; background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%); }
+}
+
+.lightning-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: lightning 8s infinite;
+  animation-delay: 3s;
+}
+
+/* Floating spirits */
+@keyframes spirit-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+  25% { transform: translateY(-20px) rotate(5deg); opacity: 0.8; }
+  50% { transform: translateY(-10px) rotate(-3deg); opacity: 1; }
+  75% { transform: translateY(-15px) rotate(2deg); opacity: 0.7; }
+}
+
+.spirit-orb {
+  position: absolute;
+  top: 30%;
+  font-size: 1.5rem;
+  animation: spirit-float 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(255, 107, 53, 0.8));
+}
+
+/* Entrance fade animation */
+@keyframes entrance-fade {
+  0% { opacity: 0; transform: translateY(50px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.entrance-fade {
+  animation: entrance-fade 2s ease-out;
+}
+
+/* Gothic frame with ornate borders */
+.gothic-frame {
+  border: 4px solid #8b0000;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(10, 10, 10, 0.95));
+  box-shadow: 
+    0 0 50px rgba(139, 0, 0, 0.5),
+    inset 0 0 30px rgba(139, 0, 0, 0.2);
+  position: relative;
+  border-radius: 8px;
+}
+
+/* Typewriter effect for title */
+@keyframes typewriter {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+.typewriter-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  animation: typewriter 3s steps(12) 1s both;
+}
+
+/* Blood drip line */
+@keyframes blood-drip {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+.blood-drip-line {
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #8b0000, #ff0000, #8b0000, transparent);
+  margin: 0 auto;
+  width: 60%;
+  animation: blood-drip 2s ease-in-out 2s both;
+  box-shadow: 0 0 10px #8b0000;
+}
+
+/* Glowing pulse effect */
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 20px #ff6b35, 0 0 30px #ff6b35, 0 0 40px #ff6b35; }
+  50% { text-shadow: 0 0 30px #ff6b35, 0 0 40px #ff6b35, 0 0 50px #ff6b35; }
+}
+
+.glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Ancient scroll background */
+.ancient-scroll-bg {
+  background: 
+    linear-gradient(45deg, rgba(212, 197, 185, 0.1), rgba(212, 197, 185, 0.05)),
+    radial-gradient(circle, rgba(139, 0, 0, 0.1), transparent);
+  border: 2px solid rgba(212, 197, 185, 0.3);
+  border-radius: 15px;
+  position: relative;
+}
+
+/* CTA Button with advanced effects */
+@keyframes cta-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.5), 0 0 40px rgba(139, 0, 0, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.8), 0 0 60px rgba(139, 0, 0, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+.cta-button {
+  animation: cta-glow 4s ease-in-out infinite;
+}
+
+/* Floating cards animation */
+@keyframes float-card {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-0.5deg); }
+}
+
+.floating-cards .feature-card {
+  animation: float-card 6s ease-in-out infinite;
+}
+
+/* Realistic candle flicker */
+@keyframes candle-realistic {
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.8));
+  }
+  25% { 
+    transform: scale(1.1) rotate(1deg);
+    filter: drop-shadow(0 0 15px rgba(255, 165, 0, 1));
+  }
+  50% { 
+    transform: scale(0.95) rotate(-0.5deg);
+    filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.6));
+  }
+  75% { 
+    transform: scale(1.05) rotate(0.5deg);
+    filter: drop-shadow(0 0 12px rgba(255, 165, 0, 0.9));
+  }
+}
+
+.candle-realistic {
+  animation: candle-realistic 2s ease-in-out infinite;
+}
+
+/* Spider web sway */
+@keyframes web-sway {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(2deg) scale(1.05); }
+  75% { transform: rotate(-1deg) scale(0.95); }
+}
+
+.web-sway {
+  animation: web-sway 8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+/* Fog rolling effect */
+@keyframes fog-roll {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.fog-roll {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.2), 
+    rgba(255, 255, 255, 0.1), 
+    transparent
+  );
+  animation: fog-roll 20s linear infinite;
+}
+
+/* Slow spin animation */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Deep text shadow */
+.text-shadow-deep {
+  text-shadow: 
+    0 0 10px #8b0000,
+    0 0 20px #8b0000,
+    0 0 30px #8b0000,
+    3px 3px 0px #000,
+    6px 6px 0px rgba(0,0,0,0.5);
+}
+/* Additional Gothic Component Effects */
+
+/* Skull decoration animation */
+@keyframes skull-glow {
+  0%, 100% { text-shadow: 0 0 10px #8b0000; }
+  50% { text-shadow: 0 0 20px #8b0000, 0 0 30px #ff6b35; }
+}
+
+.skull-decoration {
+  animation: skull-glow 3s ease-in-out infinite;
+  font-size: 1.5rem;
+}
+
+/* Export altar hover effects */
+.export-altar {
+  position: relative;
+}
+
+.export-altar::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, transparent, rgba(139, 0, 0, 0.3), transparent);
+  border-radius: 12px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.export-altar:hover::before {
+  opacity: 1;
+}
+
+/* Ritual progress bar */
+.ritual-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.ritual-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: ritual-sweep 2s ease-in-out infinite;
+}
+
+@keyframes ritual-sweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Shadow glow effects */
+.shadow-red-glow {
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.5), 0 0 40px rgba(139, 0, 0, 0.3);
+}
+
+.shadow-orange-glow {
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.5), 0 0 40px rgba(255, 107, 53, 0.3);
+}
+
+/* Shake hover effect */
+@keyframes shake-hover {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+.shake-hover:hover {
+  animation: shake-hover 0.5s ease-in-out;
+}
+
+/* Enhanced gothic button */
+.gothic-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.gothic-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.gothic-button:hover::before {
+  left: 100%;
+}
+
+/* Mystical text effects */
+.text-shadow-gothic {
+  text-shadow: 
+    0 0 5px #8b0000,
+    0 0 10px #8b0000,
+    2px 2px 0px #000;
+}
+
+.text-shadow-glow {
+  text-shadow: 
+    0 0 10px #ff6b35,
+    0 0 20px #ff6b35,
+    0 0 30px #ff6b35;
+}
+/* 🧛‍♂️ REALISTIC VAMPIRE LORD THEME - TRUE BLOOD HORROR 🧛‍♂️ */
+
+/* Vampire Color Palette */
+:root.theme-vampire {
+  --primary: #8B0000;
+  --secondary: #DC143C;
+  --accent: #B22222;
+  --background: #0A0000;
+  --surface: #1A0000;
+  --text: #F5F5DC;
+  --text-secondary: #CD5C5C;
+  --border: #8B0000;
+  --glow: #DC143C;
+}
+
+/* Realistic Blood Moon with Halo */
+.blood-moon {
+  position: fixed;
+  top: 8%;
+  right: 12%;
+  width: 250px;
+  height: 250px;
+  background: 
+    radial-gradient(circle at 30% 30%, #FF4500 0%, #DC143C 25%, #8B0000 50%, #4B0000 75%, transparent 100%),
+    radial-gradient(circle at 70% 70%, rgba(220, 20, 60, 0.3) 0%, transparent 50%);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: blood-moon-pulse 12s ease-in-out infinite;
+  box-shadow: 
+    0 0 100px #DC143C,
+    0 0 200px #8B0000,
+    0 0 300px rgba(139, 0, 0, 0.3),
+    inset -20px -20px 50px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.blood-moon::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+  background: radial-gradient(circle, rgba(220, 20, 60, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: moon-halo 8s ease-in-out infinite reverse;
+}
+
+@keyframes blood-moon-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 100px #DC143C, 0 0 200px #8B0000, 0 0 300px rgba(139, 0, 0, 0.3);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 0 150px #DC143C, 0 0 250px #8B0000, 0 0 400px rgba(139, 0, 0, 0.5);
+  }
+}
+
+@keyframes moon-halo {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.1); }
+}
+
+/* Realistic Blood Drops */
+.blood-drop {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  background: 
+    linear-gradient(180deg, 
+      #8B0000 0%, 
+      #DC143C 30%, 
+      #8B0000 70%, 
+      #4B0000 100%
+    );
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: realistic-blood-drip 8s ease-in-out infinite;
+  filter: 
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8))
+    drop-shadow(0 0 8px #8B0000);
+  transform-origin: center bottom;
+}
+
+.blood-drop::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+
+.blood-drop::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid #4B0000;
+}
+
+@keyframes realistic-blood-drip {
+  0%, 90%, 100% { 
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+  95% { 
+    transform: translateY(20px) scaleY(1.5);
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateY(40px) scaleY(2);
+    opacity: 0;
+  }
+}
+
+/* Dripping Blood from Top */
+.blood-drip-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.blood-drip-stream {
+  position: absolute;
+  width: 2px;
+  height: 0;
+  background: linear-gradient(180deg, #8B0000, #DC143C, #4B0000);
+  animation: blood-stream-drip 6s ease-in infinite;
+  border-radius: 0 0 50% 50%;
+}
+
+@keyframes blood-stream-drip {
+  0% { height: 0; opacity: 1; }
+  30% { height: 80px; opacity: 1; }
+  70% { height: 100px; opacity: 0.8; }
+  100% { height: 120px; opacity: 0; }
+}
+
+/* Gothic Castle Silhouette */
+.castle-silhouette {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: 
+    linear-gradient(to top, #000000 0%, transparent 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 200'%3E%3Cpath d='M0,200 L0,150 L50,150 L50,120 L80,120 L80,100 L120,100 L120,80 L160,80 L160,60 L200,60 L200,40 L240,40 L240,60 L280,60 L280,80 L320,80 L320,100 L360,100 L360,120 L400,120 L400,140 L450,140 L450,120 L500,120 L500,100 L550,100 L550,80 L600,80 L600,60 L650,60 L650,40 L700,40 L700,20 L750,20 L750,40 L800,40 L800,60 L850,60 L850,80 L900,80 L900,100 L950,100 L950,120 L1000,120 L1000,140 L1050,140 L1050,160 L1100,160 L1100,180 L1200,180 L1200,200 Z' fill='%23000000'/%3E%3C/svg%3E") bottom center/cover no-repeat;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+/* Vampire Fog with Particles */
+.vampire-fog {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background: 
+    radial-gradient(ellipse at bottom, rgba(139, 0, 0, 0.3) 0%, transparent 70%),
+    linear-gradient(to top, rgba(220, 20, 60, 0.1) 0%, transparent 50%);
+  animation: vampire-fog-roll 25s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vampire-fog::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.2) 0%, transparent 30%),
+    radial-gradient(circle at 80% 90%, rgba(220, 20, 60, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 50% 100%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+  animation: fog-particles 30s linear infinite reverse;
+}
+
+@keyframes vampire-fog-roll {
+  0% { transform: translateX(-25%); }
+  100% { transform: translateX(25%); }
+}
+
+@keyframes fog-particles {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(50%); }
+}
+
+/* Creepy Tree Branches */
+.tree-branches {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  background: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,100 Q15,80 20,60 Q25,40 30,20 Q35,10 40,5 M40,5 Q45,15 50,25 Q55,35 60,45 M30,20 Q25,25 20,30 Q15,35 10,40 M50,25 Q55,20 60,15 Q65,10 70,5' stroke='%23000000' stroke-width='2' fill='none' opacity='0.6'/%3E%3C/svg%3E") top left/300px 400px no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M90,100 Q85,80 80,60 Q75,40 70,20 Q65,10 60,5 M60,5 Q55,15 50,25 Q45,35 40,45 M70,20 Q75,25 80,30 Q85,35 90,40 M50,25 Q45,20 40,15 Q35,10 30,5' stroke='%23000000' stroke-width='2' fill='none' opacity='0.6'/%3E%3C/svg%3E") top right/300px 400px no-repeat;
+  animation: branch-sway 15s ease-in-out infinite;
+}
+
+@keyframes branch-sway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(0.5deg); }
+  75% { transform: rotate(-0.5deg); }
+}
+
+/* Vampire Eyes with Realistic Glow */
+.vampire-eye {
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background: 
+    radial-gradient(ellipse, #FF0000 0%, #DC143C 40%, #8B0000 80%, transparent 100%);
+  border-radius: 50%;
+  animation: vampire-eye-blink 4s ease-in-out infinite;
+  box-shadow: 
+    0 0 15px #DC143C,
+    0 0 25px rgba(220, 20, 60, 0.5),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.vampire-eye::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+@keyframes vampire-eye-blink {
+  0%, 90%, 100% { 
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  95% { 
+    opacity: 0.3;
+    transform: scaleY(0.1);
+  }
+}
+
+/* Blood Splatter Effects */
+.blood-splatter {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.splatter-1 {
+  top: 20%;
+  left: 10%;
+  width: 30px;
+  height: 30px;
+  background: 
+    radial-gradient(circle at 30% 30%, #8B0000 0%, #DC143C 40%, transparent 70%),
+    radial-gradient(circle at 70% 20%, #4B0000 0%, transparent 50%);
+  border-radius: 50% 20% 40% 30%;
+  opacity: 0.6;
+  animation: splatter-fade 10s ease-in-out infinite;
+}
+
+.splatter-2 {
+  top: 60%;
+  right: 15%;
+  width: 25px;
+  height: 35px;
+  background: 
+    radial-gradient(ellipse at 40% 60%, #8B0000 0%, #DC143C 30%, transparent 60%);
+  border-radius: 60% 40% 30% 70%;
+  opacity: 0.5;
+  animation: splatter-fade 12s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+@keyframes splatter-fade {
+  0%, 80%, 100% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+}
+
+/* Vampire Theme Audio */
+.vampire-audio {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 50;
+}
+
+.audio-control {
+  background: rgba(139, 0, 0, 0.8);
+  border: 2px solid #DC143C;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
+}
+
+.audio-control:hover {
+  background: rgba(220, 20, 60, 0.9);
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.8);
+  transform: scale(1.1);
+}
+
+.audio-control.playing {
+  animation: audio-pulse 2s ease-in-out infinite;
+}
+
+@keyframes audio-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(220, 20, 60, 0.5); }
+  50% { box-shadow: 0 0 40px rgba(220, 20, 60, 0.8), 0 0 60px rgba(139, 0, 0, 0.4); }
+}
+
+/* Vampire Theme Overrides */
+.theme-vampire {
+  background: linear-gradient(135deg, #0A0000 0%, #1A0000 50%, #0A0000 100%);
+  color: #F5F5DC;
+}
+
+.theme-vampire .gothic-frame {
+  border-color: #8B0000;
+  background: 
+    linear-gradient(135deg, rgba(26, 0, 0, 0.95), rgba(10, 0, 0, 0.98)),
+    radial-gradient(circle at top right, rgba(139, 0, 0, 0.1), transparent);
+  box-shadow: 
+    0 0 50px #DC143C,
+    inset 0 0 30px rgba(139, 0, 0, 0.4),
+    0 0 100px rgba(220, 20, 60, 0.2);
+}
+
+.theme-vampire .blood-drip-line {
+  background: linear-gradient(90deg, transparent, #8B0000, #DC143C, #B22222, #DC143C, #8B0000, transparent);
+  box-shadow: 0 0 15px #DC143C, 0 2px 10px rgba(139, 0, 0, 0.8);
+  height: 6px;
+}
+
+.theme-vampire .candle-realistic {
+  filter: 
+    drop-shadow(0 0 20px #DC143C) 
+    drop-shadow(0 0 40px rgba(220, 20, 60, 0.6))
+    hue-rotate(320deg) 
+    brightness(1.2);
+}
+/* 📖 ANCIENT BOOK VIEWER WITH CREEPY WITHERED PAGES 📖 */
+
+.ancient-book-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+/* Bigger Flying Bats */
+.bat {
+  position: absolute;
+  font-size: 3rem;
+  color: #8B0000;
+  animation: bat-flight 15s linear infinite;
+  filter: drop-shadow(0 0 15px #DC143C);
+}
+
+/* Page Components Opacity */
+.ancient-book-container > * {
+  opacity: 0.9;
+}
+
+/* Flickering Candles - Enhanced Visibility */
+.book-candle {
+  position: absolute;
+  top: 20px;
+  z-index: 15;
+  opacity: 1 !important;
+}
+
+.left-candle {
+  left: -60px;
+}
+
+.right-candle {
+  right: -60px;
+}
+
+.candle-flame {
+  font-size: 4rem;
+  animation: candle-flicker 2s ease-in-out infinite;
+  filter: 
+    drop-shadow(0 0 25px rgba(255, 165, 0, 1))
+    drop-shadow(0 0 40px rgba(255, 140, 0, 0.8))
+    brightness(1.3)
+    contrast(1.2);
+}
+
+@keyframes candle-flicker {
+  0%, 100% { 
+    transform: scale(1) rotate(-1deg);
+    filter: 
+      drop-shadow(0 0 25px rgba(255, 165, 0, 1))
+      drop-shadow(0 0 40px rgba(255, 140, 0, 0.8))
+      brightness(1.3);
+  }
+  25% { 
+    transform: scale(1.15) rotate(1deg);
+    filter: 
+      drop-shadow(0 0 35px rgba(255, 165, 0, 1))
+      drop-shadow(0 0 50px rgba(255, 140, 0, 1))
+      brightness(1.5);
+  }
+  50% { 
+    transform: scale(0.9) rotate(-0.5deg);
+    filter: 
+      drop-shadow(0 0 20px rgba(255, 165, 0, 0.8))
+      drop-shadow(0 0 30px rgba(255, 140, 0, 0.6))
+      brightness(1.1);
+  }
+  75% { 
+    transform: scale(1.1) rotate(0.5deg);
+    filter: 
+      drop-shadow(0 0 30px rgba(255, 165, 0, 1))
+      drop-shadow(0 0 45px rgba(255, 140, 0, 0.9))
+      brightness(1.4);
+  }
+}
+
+/* Enhanced Candle Light Effects */
+.candle-light-left, .candle-light-right {
+  position: absolute;
+  top: -30px;
+  width: 350px;
+  height: 450px;
+  background: 
+    radial-gradient(ellipse at center, rgba(255, 165, 0, 0.2) 0%, rgba(255, 140, 0, 0.1) 40%, transparent 70%);
+  animation: light-flicker 3s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 1 !important;
+}
+
+.candle-light-left {
+  left: -175px;
+  transform: rotate(-15deg);
+}
+
+.candle-light-right {
+  right: -175px;
+  transform: rotate(15deg);
+}
+
+@keyframes light-flicker {
+  0%, 100% { 
+    opacity: 0.4;
+    transform: scale(1) rotate(-15deg);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.1) rotate(-12deg);
+  }
+}
+
+/* Ancient Book */
+.ancient-book {
+  display: flex;
+  background: 
+    linear-gradient(135deg, #2F1B14 0%, #4A2C17 50%, #2F1B14 100%);
+  border-radius: 15px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.book-spine {
+  width: 20px;
+  background: 
+    linear-gradient(180deg, #1A0F0A 0%, #2F1B14 50%, #1A0F0A 100%);
+  border-right: 2px solid #0F0F0F;
+  box-shadow: inset -5px 0 15px rgba(0, 0, 0, 0.8);
+}
+
+/* Creepy Ancient Pages */
+.book-page {
+  flex: 1;
+  background: 
+    linear-gradient(135deg, #E8DCC0 0%, #D4C4A8 30%, #C8B99C 70%, #B8A082 100%),
+    radial-gradient(circle at 20% 80%, rgba(101, 67, 33, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.2) 0%, transparent 30%);
+  margin: 20px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.4),
+    inset 0 0 40px rgba(101, 67, 33, 0.3),
+    inset 0 0 80px rgba(139, 69, 19, 0.1);
+  border: 1px solid rgba(101, 67, 33, 0.5);
+}
+
+.left-page {
+  margin-right: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.right-page {
+  margin-left: 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Page Flipping Animations */
+.flipping-left {
+  transform: rotateY(-180deg);
+  transform-origin: right center;
+}
+
+.flipping-right {
+  transform: rotateY(180deg);
+  transform-origin: left center;
+}
+
+/* Page Content */
+.page-content {
+  padding: 40px 30px;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid rgba(101, 67, 33, 0.4);
+  padding-bottom: 10px;
+}
+
+.page-number {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: #654321;
+  font-weight: bold;
+}
+
+.page-ornament {
+  font-size: 1.5rem;
+  color: #654321;
+  animation: ornament-glow 4s ease-in-out infinite;
+}
+
+@keyframes ornament-glow {
+  0%, 100% { text-shadow: 0 0 5px rgba(101, 67, 33, 0.5); }
+  50% { text-shadow: 0 0 15px rgba(101, 67, 33, 0.8); }
+}
+
+.page-text {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2F1B14;
+  text-align: justify;
+  min-height: 400px;
+}
+
+.page-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  border-top: 2px solid rgba(101, 67, 33, 0.4);
+  padding-top: 10px;
+}
+
+/* Lesson Plan Content Formatting */
+.lesson-content {
+  white-space: pre-wrap;
+}
+
+.lesson-h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2F1B14;
+  margin: 20px 0 15px 0;
+  text-align: center;
+  border-bottom: 2px solid rgba(101, 67, 33, 0.3);
+  padding-bottom: 10px;
+}
+
+.lesson-h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #654321;
+  margin: 18px 0 12px 0;
+}
+
+.lesson-h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #654321;
+  margin: 15px 0 10px 0;
+}
+
+.lesson-bold {
+  font-weight: bold;
+  color: #2F1B14;
+}
+
+.lesson-ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.lesson-li {
+  margin: 5px 0;
+  list-style-type: none;
+  position: relative;
+}
+
+.lesson-li::before {
+  content: '❦';
+  position: absolute;
+  left: -15px;
+  color: #654321;
+}
+
+.lesson-p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+/* Ancient Page Aging Effects */
+.page-aging {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 25%, rgba(101, 67, 33, 0.4) 0%, transparent 25%),
+    radial-gradient(circle at 85% 75%, rgba(139, 69, 19, 0.3) 0%, transparent 20%),
+    radial-gradient(circle at 60% 10%, rgba(101, 67, 33, 0.2) 0%, transparent 15%),
+    radial-gradient(circle at 30% 90%, rgba(139, 69, 19, 0.25) 0%, transparent 18%);
+  pointer-events: none;
+}
+
+.page-stains {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 10% 80%, rgba(101, 67, 33, 0.6) 0%, transparent 12%),
+    radial-gradient(ellipse at 90% 20%, rgba(139, 69, 19, 0.4) 0%, transparent 10%),
+    radial-gradient(ellipse at 70% 60%, rgba(101, 67, 33, 0.3) 0%, transparent 8%),
+    radial-gradient(ellipse at 25% 40%, rgba(139, 69, 19, 0.35) 0%, transparent 9%);
+  pointer-events: none;
+}
+
+/* Blood Dripping Navigation Buttons (Vampire Theme) */
+.theme-vampire .nav-button {
+  font-family: 'Cinzel', serif;
+  position: relative;
+}
+
+.theme-vampire .nav-text {
+  position: relative;
+  display: inline-block;
+}
+
+.theme-vampire .nav-text::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 20%;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(180deg, #8B0000, #DC143C, #4B0000);
+  border-radius: 0 0 50% 50%;
+  animation: nav-blood-drip 3s ease-in-out infinite;
+}
+
+@keyframes nav-blood-drip {
+  0%, 80%, 100% { height: 0; opacity: 1; }
+  85% { height: 12px; opacity: 1; }
+  95% { height: 18px; opacity: 0.8; }
+  100% { height: 22px; opacity: 0; }
+}
+
+/* Blood Dripping Page Numbers (Vampire Theme) */
+.theme-vampire .page-number {
+  position: relative;
+  color: #8B0000;
+}
+
+.theme-vampire .page-number::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 0;
+  background: linear-gradient(180deg, #8B0000, #DC143C, #4B0000);
+  border-radius: 0 0 50% 50%;
+  animation: page-number-drip 4s ease-in-out infinite;
+}
+
+@keyframes page-number-drip {
+  0%, 75%, 100% { height: 0; opacity: 1; }
+  80% { height: 10px; opacity: 1; }
+  90% { height: 15px; opacity: 0.8; }
+  100% { height: 20px; opacity: 0; }
+}
+
+/* Bigger Blood Droplets */
+.blood-drop {
+  position: absolute;
+  width: 12px;
+  height: 18px;
+  background: 
+    linear-gradient(180deg, 
+      #8B0000 0%, 
+      #DC143C 30%, 
+      #8B0000 70%, 
+      #4B0000 100%
+    );
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: realistic-blood-drip 8s ease-in-out infinite;
+  filter: 
+    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.8))
+    drop-shadow(0 0 12px #8B0000);
+  transform-origin: center bottom;
+}
+
+.blood-drop::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 3px;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+
+.blood-drop::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 6px solid #4B0000;
+}
+
+/* Navigation */
+.book-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding: 0 20px;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(101, 67, 33, 0.8);
+  border: 2px solid #654321;
+  border-radius: 25px;
+  color: #F5F5DC;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-button:hover:not(:disabled) {
+  background: rgba(101, 67, 33, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+}
+
+.page-indicator {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: #654321;
+}
+
+.current-spread {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: block;
+}
+
+.total-pages {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ancient-book-container {
+    padding: 40px 10px;
+  }
+  
+  .ancient-book {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .book-spine {
+    width: 100%;
+    height: 10px;
+  }
+  
+  .left-page, .right-page {
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
+  .book-candle {
+    display: none;
+  }
+  
+  .page-content {
+    padding: 20px 15px;
+  }
+  
+  .page-text {
+    font-size: 1rem;
+    min-height: 300px;
+  }
+}
+/* 🩸 REALISTIC BLOOD EFFECTS - MASTER GOTHIC DESIGN 🩸 */
+
+/* Realistic Blood Dripping Gothic Titles */
+.theme-vampire h1 {
+  position: relative;
+  overflow: visible;
+}
+
+.theme-vampire h1::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 20%;
+  width: 6px;
+  height: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(139, 0, 0, 0) 0%,
+      rgba(139, 0, 0, 0.8) 10%,
+      #8B0000 20%,
+      #DC143C 40%,
+      #B22222 60%,
+      #8B0000 80%,
+      #4B0000 100%
+    );
+  border-radius: 0 0 60% 40%;
+  box-shadow: 
+    0 2px 4px rgba(139, 0, 0, 0.8),
+    inset -1px 0 2px rgba(0, 0, 0, 0.5),
+    inset 1px 0 1px rgba(255, 255, 255, 0.2);
+  animation: realistic-title-blood 8s ease-in-out infinite;
+}
+
+.theme-vampire h1::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: 25%;
+  width: 4px;
+  height: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(139, 0, 0, 0) 0%,
+      rgba(139, 0, 0, 0.6) 15%,
+      #8B0000 25%,
+      #DC143C 45%,
+      #8B0000 75%,
+      #4B0000 100%
+    );
+  border-radius: 0 0 70% 30%;
+  box-shadow: 
+    0 1px 3px rgba(139, 0, 0, 0.6),
+    inset -1px 0 1px rgba(0, 0, 0, 0.4);
+  animation: realistic-title-blood 8s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+@keyframes realistic-title-blood {
+  0%, 60%, 100% { 
+    height: 0; 
+    opacity: 0;
+  }
+  65% { 
+    height: 8px; 
+    opacity: 0.8;
+  }
+  75% { 
+    height: 25px; 
+    opacity: 1;
+  }
+  85% { 
+    height: 45px; 
+    opacity: 0.9;
+  }
+  95% { 
+    height: 60px; 
+    opacity: 0.6;
+  }
+  100% { 
+    height: 70px; 
+    opacity: 0;
+  }
+}
+
+/* Realistic Blood Dripping Subtitle */
+.theme-vampire .glow-pulse {
+  position: relative;
+  overflow: visible;
+}
+
+.theme-vampire .glow-pulse::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 35%;
+  width: 5px;
+  height: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(139, 0, 0, 0) 0%,
+      rgba(139, 0, 0, 0.7) 12%,
+      #8B0000 25%,
+      #DC143C 50%,
+      #8B0000 80%,
+      #4B0000 100%
+    );
+  border-radius: 0 0 65% 35%;
+  box-shadow: 
+    0 2px 3px rgba(139, 0, 0, 0.7),
+    inset -1px 0 1px rgba(0, 0, 0, 0.4),
+    inset 1px 0 1px rgba(255, 255, 255, 0.15);
+  animation: realistic-subtitle-blood 10s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.theme-vampire .glow-pulse::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: 30%;
+  width: 3px;
+  height: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(139, 0, 0, 0) 0%,
+      #8B0000 30%,
+      #DC143C 60%,
+      #4B0000 100%
+    );
+  border-radius: 0 0 80% 20%;
+  box-shadow: 0 1px 2px rgba(139, 0, 0, 0.5);
+  animation: realistic-subtitle-blood 10s ease-in-out infinite;
+  animation-delay: 6s;
+}
+
+@keyframes realistic-subtitle-blood {
+  0%, 70%, 100% { 
+    height: 0; 
+    opacity: 0;
+  }
+  75% { 
+    height: 12px; 
+    opacity: 0.9;
+  }
+  85% { 
+    height: 30px; 
+    opacity: 1;
+  }
+  95% { 
+    height: 45px; 
+    opacity: 0.7;
+  }
+  100% { 
+    height: 50px; 
+    opacity: 0;
+  }
+}
+
+/* Realistic Flying Bats with Blood Trails */
+.vampire-bats {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.bat {
+  position: absolute;
+  font-size: 3.5rem;
+  color: #2B0000;
+  text-shadow: 0 0 20px #8B0000;
+  animation: realistic-bat-flight 18s linear infinite;
+  filter: 
+    drop-shadow(0 0 15px #DC143C)
+    drop-shadow(0 0 25px rgba(139, 0, 0, 0.5));
+}
+
+.bat::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 45%;
+  width: 3px;
+  height: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(139, 0, 0, 0) 0%,
+      rgba(139, 0, 0, 0.8) 20%,
+      #8B0000 40%,
+      #DC143C 60%,
+      #8B0000 85%,
+      #4B0000 100%
+    );
+  border-radius: 0 0 70% 30%;
+  box-shadow: 
+    0 2px 4px rgba(139, 0, 0, 0.8),
+    inset -1px 0 1px rgba(0, 0, 0, 0.6);
+  animation: bat-blood-trail 3s ease-in infinite;
+}
+
+.bat::before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  right: 40%;
+  width: 2px;
+  height: 0;
+  background: 
+    linear-gradient(180deg, 
+      rgba(139, 0, 0, 0) 0%,
+      #8B0000 50%,
+      #4B0000 100%
+    );
+  border-radius: 0 0 60% 40%;
+  animation: bat-blood-trail 3s ease-in infinite;
+  animation-delay: 1s;
+}
+
+@keyframes realistic-bat-flight {
+  0% { 
+    transform: translateX(-150px) translateY(0px) rotate(-5deg);
+    opacity: 0;
+  }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { 
+    transform: translateX(calc(100vw + 150px)) translateY(-40px) rotate(8deg);
+    opacity: 0;
+  }
+}
+
+@keyframes bat-blood-trail {
+  0% { 
+    height: 0; 
+    opacity: 1;
+  }
+  25% { 
+    height: 15px; 
+    opacity: 1;
+  }
+  50% { 
+    height: 25px; 
+    opacity: 0.9;
+  }
+  75% { 
+    height: 35px; 
+    opacity: 0.7;
+  }
+  100% { 
+    height: 45px; 
+    opacity: 0;
+  }
+}
+
+/* 🩸 REALISTIC NATURAL BLOOD DROP 🩸 */
+.blood-drop {
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  background: 
+    radial-gradient(ellipse 60% 40% at 35% 25%, rgba(255, 100, 100, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 60% at 40% 30%, rgba(255, 150, 150, 0.2) 0%, transparent 60%),
+    linear-gradient(165deg, 
+      #4A0000 0%,
+      #8B0000 15%,
+      #DC143C 35%,
+      #B22222 55%,
+      #8B0000 75%,
+      #4A0000 90%,
+      #2B0000 100%
+    );
+  border-radius: 45% 55% 60% 40% / 60% 65% 35% 40%;
+  transform: rotate(-2deg);
+  box-shadow: 
+    inset -2px 1px 3px rgba(0, 0, 0, 0.7),
+    inset 1px -1px 2px rgba(255, 255, 255, 0.1),
+    0 3px 6px rgba(0, 0, 0, 0.8),
+    0 0 12px rgba(139, 0, 0, 0.4);
+  animation: natural-blood-fall 8s ease-in infinite;
+}
+
+.blood-drop::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  width: 2px;
+  height: 3px;
+  background: rgba(255, 200, 200, 0.6);
+  border-radius: 50%;
+  filter: blur(0.3px);
+}
+
+.blood-drop::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 3px;
+  width: 2px;
+  height: 4px;
+  background: 
+    linear-gradient(180deg, 
+      #8B0000 0%,
+      #4A0000 60%,
+      #2B0000 100%
+    );
+  border-radius: 40% 60% 80% 20% / 30% 40% 60% 70%;
+  transform: rotate(5deg);
+}
+
+@keyframes natural-blood-fall {
+  0% { 
+    transform: translateY(0px) rotate(-2deg) scaleY(1);
+    opacity: 1;
+  }
+  15% {
+    transform: translateY(20px) rotate(-1deg) scaleY(1.1);
+    opacity: 1;
+  }
+  30% {
+    transform: translateY(50px) rotate(0deg) scaleY(1.3);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateY(90px) rotate(1deg) scaleY(1.8);
+    opacity: 0.9;
+  }
+  70% {
+    transform: translateY(140px) rotate(2deg) scaleY(2.4);
+    opacity: 0.7;
+  }
+  85% {
+    transform: translateY(200px) rotate(3deg) scaleY(3.2);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(280px) rotate(4deg) scaleY(4.5);
+    opacity: 0;
+  }
+}
+/* 🌙 DARKER CREEPY BLOOD MOON 🌙 */
+.blood-moon {
+  position: fixed;
+  top: 8%;
+  right: 12%;
+  width: 280px;
+  height: 280px;
+  background: 
+    radial-gradient(circle at 35% 25%, #4A0000 0%, #2B0000 20%, #1A0000 40%, #0F0000 60%, transparent 80%),
+    radial-gradient(circle at 65% 75%, rgba(75, 0, 0, 0.6) 0%, transparent 40%),
+    radial-gradient(circle at 20% 80%, rgba(139, 0, 0, 0.3) 0%, transparent 30%);
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: creepy-blood-moon-pulse 15s ease-in-out infinite;
+  box-shadow: 
+    0 0 80px rgba(75, 0, 0, 0.8),
+    0 0 150px rgba(42, 0, 0, 0.6),
+    0 0 250px rgba(26, 0, 0, 0.4),
+    inset -30px -30px 60px rgba(0, 0, 0, 0.8),
+    inset 20px 20px 40px rgba(75, 0, 0, 0.2);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.blood-moon::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  right: -60px;
+  bottom: -60px;
+  background: radial-gradient(circle, rgba(75, 0, 0, 0.15) 0%, rgba(42, 0, 0, 0.08) 50%, transparent 80%);
+  border-radius: 50%;
+  animation: creepy-moon-halo 12s ease-in-out infinite reverse;
+}
+
+@keyframes creepy-blood-moon-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 
+      0 0 80px rgba(75, 0, 0, 0.8),
+      0 0 150px rgba(42, 0, 0, 0.6),
+      0 0 250px rgba(26, 0, 0, 0.4);
+  }
+  33% { 
+    transform: scale(1.02);
+    box-shadow: 
+      0 0 90px rgba(75, 0, 0, 0.9),
+      0 0 170px rgba(42, 0, 0, 0.7),
+      0 0 280px rgba(26, 0, 0, 0.5);
+  }
+  66% { 
+    transform: scale(0.98);
+    box-shadow: 
+      0 0 70px rgba(75, 0, 0, 0.7),
+      0 0 130px rgba(42, 0, 0, 0.5),
+      0 0 220px rgba(26, 0, 0, 0.3);
+  }
+}
+
+@keyframes creepy-moon-halo {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.25; transform: scale(1.05); }
+}
+
+/* Page Components Opacity */
+.ancient-book-container > * {
+  opacity: 0.9;
+}
+
+/* 🕯️ TALL FLICKERING CANDLES 🕯️ */
+.book-candle {
+  position: absolute;
+  top: 0;
+  z-index: 15;
+  opacity: 1 !important;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-candle {
+  left: -40px;
+}
+
+.right-candle {
+  right: -40px;
+}
+
+.candle-flame {
+  font-size: 4rem;
+  animation: candle-flicker 2s ease-in-out infinite;
+  filter: 
+    drop-shadow(0 0 25px rgba(255, 165, 0, 1))
+    drop-shadow(0 0 40px rgba(255, 140, 0, 0.8))
+    brightness(1.3)
+    contrast(1.2);
+  margin-bottom: 20px;
+}
+
+.candle-flame::after {
+  content: '🕯️';
+  position: absolute;
+  top: 80px;
+  left: 0;
+  font-size: 3.5rem;
+  animation: candle-flicker 2.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.candle-flame::before {
+  content: '🕯️';
+  position: absolute;
+  top: 160px;
+  left: 0;
+  font-size: 3rem;
+  animation: candle-flicker 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Enhanced Candle Light Effects */
+.candle-light-left, .candle-light-right {
+  position: absolute;
+  top: 0;
+  width: 400px;
+  height: 100vh;
+  background: 
+    radial-gradient(ellipse at center top, rgba(255, 165, 0, 0.15) 0%, rgba(255, 140, 0, 0.08) 30%, transparent 60%),
+    radial-gradient(ellipse at center 200px, rgba(255, 165, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at center 400px, rgba(255, 165, 0, 0.05) 0%, transparent 40%);
+  animation: light-flicker 3s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 1 !important;
+}
+
+.candle-light-left {
+  left: -200px;
+  transform: rotate(-8deg);
+}
+
+.candle-light-right {
+  right: -200px;
+  transform: rotate(8deg);
+}
+
+/* 📖 NARROWER ANCIENT BOOK 📖 */
+.ancient-book-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 80px;
+}
+
+.ancient-book {
+  display: flex;
+  background: 
+    linear-gradient(135deg, #2F1B14 0%, #4A2C17 50%, #2F1B14 100%);
+  border-radius: 15px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+  max-width: 800px;
+  margin: 0 auto;
+}
+/* 📜 ANCIENT SCROLL VIEWER WITH LARGE CANDLE 📜 */
+
+.ancient-scroll-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  opacity: 0.9;
+}
+
+/* 🕯️ TWO TALL CANDLES ON BOTH SIDES 🕯️ */
+.large-candle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 15;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-candle {
+  left: -120px;
+}
+
+.right-candle {
+  right: -120px;
+}
+
+.candle-body {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 4rem;
+  line-height: 0.8;
+  letter-spacing: -0.5rem;
+  animation: large-candle-flicker 3s ease-in-out infinite;
+  filter: 
+    drop-shadow(0 0 40px rgba(255, 165, 0, 1))
+    drop-shadow(0 0 80px rgba(255, 140, 0, 0.8))
+    brightness(1.4)
+    contrast(1.3);
+}
+
+.right-candle .candle-body {
+  animation-delay: 1.5s;
+}
+
+@keyframes large-candle-flicker {
+  0%, 100% { 
+    transform: scale(1) rotate(-2deg);
+    filter: 
+      drop-shadow(0 0 40px rgba(255, 165, 0, 1))
+      drop-shadow(0 0 80px rgba(255, 140, 0, 0.8))
+      brightness(1.4);
+  }
+  25% { 
+    transform: scale(1.1) rotate(1deg);
+    filter: 
+      drop-shadow(0 0 50px rgba(255, 165, 0, 1))
+      drop-shadow(0 0 100px rgba(255, 140, 0, 1))
+      brightness(1.6);
+  }
+  50% { 
+    transform: scale(0.95) rotate(-1deg);
+    filter: 
+      drop-shadow(0 0 35px rgba(255, 165, 0, 0.9))
+      drop-shadow(0 0 70px rgba(255, 140, 0, 0.7))
+      brightness(1.2);
+  }
+  75% { 
+    transform: scale(1.05) rotate(0.5deg);
+    filter: 
+      drop-shadow(0 0 45px rgba(255, 165, 0, 1))
+      drop-shadow(0 0 90px rgba(255, 140, 0, 0.9))
+      brightness(1.5);
+  }
+}
+
+/* Candle Light Effects */
+.left-candle .candle-light {
+  position: absolute;
+  top: 0;
+  left: -100px;
+  width: 300px;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at right center, rgba(255, 165, 0, 0.2) 0%, rgba(255, 140, 0, 0.1) 40%, transparent 70%),
+    radial-gradient(ellipse at right 200px, rgba(255, 165, 0, 0.15) 0%, transparent 60%);
+  animation: large-light-flicker 4s ease-in-out infinite;
+  pointer-events: none;
+  transform: rotate(5deg);
+}
+
+.right-candle .candle-light {
+  position: absolute;
+  top: 0;
+  right: -100px;
+  width: 300px;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at left center, rgba(255, 165, 0, 0.2) 0%, rgba(255, 140, 0, 0.1) 40%, transparent 70%),
+    radial-gradient(ellipse at left 200px, rgba(255, 165, 0, 0.15) 0%, transparent 60%);
+  animation: large-light-flicker 4s ease-in-out infinite;
+  animation-delay: 2s;
+  pointer-events: none;
+  transform: rotate(-5deg);
+}
+
+@keyframes large-light-flicker {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: rotate(5deg) scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: rotate(3deg) scale(1.05);
+  }
+}
+
+/* 📜 ANCIENT SCROLL 📜 */
+.ancient-scroll {
+  position: relative;
+  background: 
+    linear-gradient(135deg, #E8DCC0 0%, #D4C4A8 30%, #C8B99C 70%, #B8A082 100%),
+    radial-gradient(circle at 20% 80%, rgba(101, 67, 33, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.3) 0%, transparent 30%);
+  border-radius: 20px;
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 50px rgba(101, 67, 33, 0.3),
+    inset 0 0 100px rgba(139, 69, 19, 0.1);
+  border: 2px solid rgba(101, 67, 33, 0.6);
+  min-height: 700px;
+  overflow: hidden;
+  transition: all 0.6s ease-in-out;
+}
+
+/* Scroll Rods */
+.scroll-rod {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: 
+    linear-gradient(90deg, #654321 0%, #8B4513 50%, #654321 100%);
+  box-shadow: 
+    0 3px 6px rgba(0, 0, 0, 0.5),
+    inset 0 2px 4px rgba(139, 69, 19, 0.3);
+  border-radius: 10px;
+}
+
+.top-rod {
+  top: -10px;
+}
+
+.bottom-rod {
+  bottom: -10px;
+}
+
+/* Scroll Content */
+.scroll-content {
+  padding: 60px 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.scroll-header, .scroll-footer {
+  text-align: center;
+  margin: 30px 0;
+  border-bottom: 3px solid rgba(101, 67, 33, 0.4);
+  padding-bottom: 15px;
+}
+
+.scroll-footer {
+  border-bottom: none;
+  border-top: 3px solid rgba(101, 67, 33, 0.4);
+  padding-top: 15px;
+  padding-bottom: 0;
+}
+
+.scroll-ornament {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  color: #654321;
+  font-weight: bold;
+  animation: ornament-glow 5s ease-in-out infinite;
+}
+
+.scroll-text {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #2F1B14;
+  min-height: 500px;
+}
+
+/* Scroll Page Change Animations */
+.changing-next {
+  animation: scroll-roll-out-right 0.6s ease-in-out;
+}
+
+.changing-prev {
+  animation: scroll-roll-out-left 0.6s ease-in-out;
+}
+
+@keyframes scroll-roll-out-right {
+  0% { 
+    transform: rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: rotateY(90deg) scale(0.8);
+    opacity: 0.5;
+  }
+  100% { 
+    transform: rotateY(180deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@keyframes scroll-roll-out-left {
+  0% { 
+    transform: rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: rotateY(-90deg) scale(0.8);
+    opacity: 0.5;
+  }
+  100% { 
+    transform: rotateY(-180deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* Scroll Aging Effects */
+.scroll-aging {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 15% 25%, rgba(101, 67, 33, 0.5) 0%, transparent 25%),
+    radial-gradient(circle at 85% 75%, rgba(139, 69, 19, 0.4) 0%, transparent 20%),
+    radial-gradient(circle at 60% 10%, rgba(101, 67, 33, 0.3) 0%, transparent 15%),
+    radial-gradient(circle at 30% 90%, rgba(139, 69, 19, 0.35) 0%, transparent 18%);
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.scroll-stains {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 10% 80%, rgba(101, 67, 33, 0.7) 0%, transparent 12%),
+    radial-gradient(ellipse at 90% 20%, rgba(139, 69, 19, 0.5) 0%, transparent 10%),
+    radial-gradient(ellipse at 70% 60%, rgba(101, 67, 33, 0.4) 0%, transparent 8%),
+    radial-gradient(ellipse at 25% 40%, rgba(139, 69, 19, 0.45) 0%, transparent 9%);
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+/* Navigation */
+.scroll-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  background: rgba(101, 67, 33, 0.8);
+  border: 3px solid #654321;
+  border-radius: 30px;
+  color: #F5F5DC;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.nav-button:hover:not(:disabled) {
+  background: rgba(101, 67, 33, 1);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.nav-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nav-icon {
+  font-size: 1.4rem;
+}
+
+.page-indicator {
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  color: #654321;
+}
+
+.current-page {
+  font-size: 1.4rem;
+  font-weight: bold;
+  display: block;
+}
+
+.total-pages {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ancient-scroll-container {
+    padding: 40px 10px;
+  }
+  
+  .large-candle {
+    left: -60px;
+  }
+  
+  .candle-body {
+    font-size: 6rem;
+  }
+  
+  .scroll-content {
+    padding: 40px 25px;
+  }
+  
+  .scroll-text {
+    font-size: 1rem;
+    min-height: 400px;
+  }
+}
+/* 📚 SYLLABUS VIEWER STYLES 📚 */
+
+.syllabus-units {
+  space-y: 20px;
+}
+
+.unit-section {
+  margin-bottom: 20px;
+  border: 2px solid rgba(101, 67, 33, 0.4);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.unit-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: rgba(101, 67, 33, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel', serif;
+  color: #654321;
+  font-weight: bold;
+}
+
+.unit-header:hover {
+  background: rgba(101, 67, 33, 0.3);
+  transform: translateY(-1px);
+}
+
+.unit-icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.unit-title {
+  flex: 1;
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+.expand-icon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.topics-list {
+  padding: 10px;
+  background: rgba(212, 197, 185, 0.1);
+}
+
+.topic-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin: 5px 0;
+  background: transparent;
+  border: 1px solid rgba(101, 67, 33, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Crimson Text', serif;
+  color: #2F1B14;
+}
+
+.topic-item:hover {
+  background: rgba(101, 67, 33, 0.2);
+  border-color: rgba(101, 67, 33, 0.6);
+  transform: translateX(5px);
+}
+
+.topic-bullet {
+  color: #654321;
+  margin-right: 10px;
+  font-size: 1.1rem;
+}
+
+.topic-text {
+  flex: 1;
+  text-align: left;
+}
+
+/* Topic Options Modal */
+.topic-options-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fade-in 0.3s ease;
+}
+
+.topic-options-modal {
+  max-width: 500px;
+  width: 90%;
+  animation: slide-up 0.3s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.option-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(101, 67, 33, 0.8);
+  border: 2px solid #654321;
+  border-radius: 10px;
+  color: #F5F5DC;
+  font-family: 'Cinzel', serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.option-button:hover {
+  background: rgba(101, 67, 33, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.option-icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+}
+
+.option-text {
+  font-size: 1.1rem;
+}
+
+.close-button {
+  width: 100%;
+  padding: 10px;
+  background: rgba(139, 0, 0, 0.8);
+  border: 2px solid #8B0000;
+  border-radius: 8px;
+  color: #F5F5DC;
+  font-family: 'Cinzel', serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background: rgba(139, 0, 0, 1);
+}
+/* 🧙‍♀️ WITCH THEME - BACKGROUND ONLY 🧙‍♀️ */
+
+.theme-witch {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(25, 25, 112, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #1A1A2E 0%, #16213E 30%, #0F3460 70%, #533483 100%);
+}
+
+/* WITCH BACKGROUND ELEMENTS ONLY */
+.theme-witch .witch-trees,
+.theme-witch .witch-brooms,
+.theme-witch .witch-bats,
+.theme-witch .witch-cats,
+.theme-witch .witch-particles,
+.theme-witch .witch-moon {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 🌲 ENHANCED SWAYING UNNATURAL TREES 🌲 */
+.witch-trees {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.twisted-tree {
+  position: absolute;
+  bottom: 0;
+  width: 100px;
+  height: 500px;
+}
+
+.twisted-tree::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25px;
+  height: 350px;
+  background: 
+    linear-gradient(180deg, 
+      #FF8C00 0%, 
+      #FF7F50 20%,
+      #D2691E 50%, 
+      #CD853F 80%,
+      #A0522D 100%
+    );
+  border-radius: 12px 12px 0 0;
+  animation: tree-sway 12s ease-in-out infinite;
+  box-shadow: 
+    inset -8px 0 15px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(255, 140, 0, 0.8),
+    0 0 60px rgba(138, 43, 226, 0.6);
+  clip-path: polygon(30% 0%, 70% 0%, 85% 15%, 75% 35%, 95% 55%, 65% 75%, 85% 100%, 15% 100%, 35% 75%, 5% 55%, 25% 35%, 15% 15%);
+  border: 3px solid rgba(255, 255, 255, 0.6);
+}
+
+.twisted-tree::after {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 120px;
+  background: 
+    radial-gradient(ellipse at center, 
+      rgba(47, 47, 47, 0.95) 0%, 
+      rgba(28, 28, 28, 0.8) 40%, 
+      transparent 75%
+    );
+  border-radius: 70% 30% 80% 20%;
+  animation: tree-leaves-rustle 10s ease-in-out infinite;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 20%, 90% 45%, 100% 70%, 75% 85%, 50% 100%, 25% 85%, 0% 70%, 10% 45%, 0% 20%);
+  box-shadow: 0 0 25px rgba(138, 43, 226, 0.4);
+}
+
+.tree-1 {
+  left: 2%;
+  animation-delay: 0s;
+  transform: scale(1.3) rotate(-8deg);
+}
+
+.tree-2 {
+  left: 10%;
+  transform: scale(1.0) rotate(12deg);
+  animation-delay: 4s;
+}
+
+.tree-3 {
+  right: 6%;
+  transform: scale(1.5) rotate(-15deg);
+  animation-delay: 8s;
+}
+
+.tree-4 {
+  right: 18%;
+  transform: scale(0.9) rotate(18deg);
+  animation-delay: 2s;
+}
+
+@keyframes tree-sway {
+  0%, 100% { transform: translateX(-50%) rotate(-8deg) scale(1); }
+  25% { transform: translateX(-50%) rotate(5deg) scale(1.02); }
+  50% { transform: translateX(-50%) rotate(-3deg) scale(0.98); }
+  75% { transform: translateX(-50%) rotate(6deg) scale(1.01); }
+}
+
+@keyframes tree-leaves-rustle {
+  0%, 100% { transform: translateX(-50%) scale(1) rotate(-5deg); }
+  33% { transform: translateX(-50%) scale(1.2) rotate(3deg); }
+  66% { transform: translateX(-50%) scale(0.9) rotate(-2deg); }
+}
+
+/* 🦇 ENHANCED PURPLE FLYING BATS 🦇 */
+.witch-bats {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.witch-bat {
+  position: absolute;
+  width: 60px;
+  height: 30px;
+  animation: witch-bat-flight 25s linear infinite;
+}
+
+.witch-bat::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 15px;
+  height: 20px;
+  background: #DA70D6;
+  border-radius: 60% 60% 0 0;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 0 25px rgba(218, 112, 214, 1),
+    0 0 50px rgba(147, 112, 219, 0.8),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.witch-bat::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 6px;
+  background: #DA70D6;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    -30px -12px 0 -4px #DA70D6,
+    30px -12px 0 -4px #DA70D6,
+    -35px -8px 0 -5px #BA55D3,
+    35px -8px 0 -5px #BA55D3,
+    0 0 35px rgba(218, 112, 214, 1),
+    0 0 70px rgba(147, 112, 219, 0.8),
+    0 0 105px rgba(75, 0, 130, 0.6);
+  animation: bat-wing-flap 0.8s ease-in-out infinite;
+}
+
+.witch-bat-1 {
+  top: 12%;
+  animation-delay: 0s;
+}
+
+.witch-bat-2 {
+  top: 30%;
+  animation-delay: 8s;
+}
+
+.witch-bat-3 {
+  top: 50%;
+  animation-delay: 16s;
+}
+
+@keyframes witch-bat-flight {
+  0% { 
+    transform: translateX(-120px) translateY(0px);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { 
+    transform: translateX(calc(100vw + 120px)) translateY(50px);
+    opacity: 0;
+  }
+}
+
+@keyframes bat-wing-flap {
+  0%, 100% { 
+    transform: translate(-50%, -50%) scaleY(1) scaleX(1);
+  }
+  50% { 
+    transform: translate(-50%, -50%) scaleY(0.5) scaleX(1.2);
+  }
+}
+
+/* 🐱 PURPLE SHADOW CATS 🐱 */
+.witch-cats {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.black-cat {
+  position: absolute;
+  bottom: 30px;
+  width: 70px;
+  height: 35px;
+  animation: cat-prowl 35s linear infinite;
+}
+
+.black-cat::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  bottom: 0;
+  width: 45px;
+  height: 25px;
+  background: 
+    linear-gradient(135deg, 
+      #1C1C1C 0%, 
+      #0F0F0F 50%, 
+      #000000 100%
+    );
+  border-radius: 60% 60% 40% 40%;
+  box-shadow: 
+    0 3px 10px rgba(0, 0, 0, 0.8),
+    inset 0 -3px 6px rgba(28, 28, 28, 0.4),
+    0 0 20px rgba(138, 43, 226, 0.4);
+}
+
+.black-cat::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  bottom: 20px;
+  width: 25px;
+  height: 18px;
+  background: 
+    radial-gradient(circle at 40% 40%, 
+      #1C1C1C 0%, 
+      #0F0F0F 70%, 
+      #000000 100%
+    );
+  border-radius: 60% 50% 70% 60%;
+  box-shadow: 
+    30px 0 0 -8px #1C1C1C,
+    0 0 18px rgba(138, 43, 226, 0.4);
+}
+
+.cat-1 {
+  animation-delay: 0s;
+}
+
+.cat-2 {
+  animation-delay: 17s;
+}
+
+@keyframes cat-prowl {
+  0% { 
+    transform: translateX(-120px);
+    opacity: 0;
+  }
+  5% { opacity: 1; }
+  25% { 
+    transform: translateX(350px);
+  }
+  30% { 
+    transform: translateX(350px) scaleX(-1);
+  }
+  50% { 
+    transform: translateX(150px) scaleX(-1);
+  }
+  55% { 
+    transform: translateX(150px) scaleX(1);
+  }
+  75% { 
+    transform: translateX(550px) scaleX(1);
+  }
+  95% { opacity: 1; }
+  100% { 
+    transform: translateX(calc(100vw + 120px));
+    opacity: 0;
+  }
+}
+
+/* 🌙 WITCH MOON 🌙 */
+.witch-moon {
+  position: fixed;
+  top: 8%;
+  right: 12%;
+  width: 180px;
+  height: 180px;
+  background: 
+    radial-gradient(circle at 35% 25%, 
+      #E6E6FA 0%, 
+      #D8BFD8 20%, 
+      #9370DB 50%, 
+      #4B0082 80%, 
+      #2E0054 100%
+    );
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: witch-moon-glow 10s ease-in-out infinite;
+  box-shadow: 
+    0 0 60px rgba(147, 112, 219, 0.8),
+    0 0 120px rgba(138, 43, 226, 0.6),
+    inset -25px -25px 50px rgba(75, 0, 130, 0.6),
+    inset 15px 15px 30px rgba(230, 230, 250, 0.1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.witch-moon::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  width: 15px;
+  height: 15px;
+  background: rgba(75, 0, 130, 0.4);
+  border-radius: 50%;
+  box-shadow: 
+    30px 20px 0 -3px rgba(75, 0, 130, 0.3),
+    -10px 40px 0 -5px rgba(75, 0, 130, 0.2);
+}
+
+@keyframes witch-moon-glow {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 
+      0 0 60px rgba(147, 112, 219, 0.8),
+      0 0 120px rgba(138, 43, 226, 0.6);
+  }
+  50% { 
+    transform: scale(1.03);
+    box-shadow: 
+      0 0 80px rgba(147, 112, 219, 1),
+      0 0 160px rgba(138, 43, 226, 0.8);
+  }
+}
+
+/* 🔮 FLOATING MAGICAL ORBS 🔮 */
+.witch-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.magic-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: 
+    radial-gradient(circle, 
+      rgba(147, 112, 219, 1) 0%, 
+      rgba(138, 43, 226, 0.8) 40%, 
+      transparent 70%
+    );
+  border-radius: 50%;
+  animation: float-particle 12s linear infinite;
+  box-shadow: 
+    0 0 15px rgba(147, 112, 219, 0.8),
+    0 0 25px rgba(138, 43, 226, 0.4);
+}
+
+.particle-1 { left: 10%; animation-delay: 0s; }
+.particle-2 { left: 30%; animation-delay: 3s; }
+.particle-3 { left: 50%; animation-delay: 6s; }
+.particle-4 { left: 70%; animation-delay: 9s; }
+.particle-5 { left: 90%; animation-delay: 2s; }
+
+@keyframes float-particle {
+  0% { 
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% { 
+    opacity: 1;
+    transform: translateY(90vh) scale(1);
+  }
+  90% { 
+    opacity: 1;
+    transform: translateY(10vh) scale(1);
+  }
+  100% { 
+    transform: translateY(-10vh) scale(0);
+    opacity: 0;
+  }
+}
+/* 🌙 DEEP PURPLE WITCH MOON 🌙 */
+.witch-moon {
+  position: fixed;
+  top: 6%;
+  right: 10%;
+  width: 220px;
+  height: 220px;
+  background: 
+    radial-gradient(circle at 35% 25%, 
+      #E6E6FA 0%, 
+      #DDA0DD 15%, 
+      #9370DB 40%, 
+      #4B0082 70%, 
+      #2E0054 90%,
+      #1A0033 100%
+    );
+  border-radius: 50%;
+  opacity: 0.95;
+  animation: witch-moon-glow 12s ease-in-out infinite;
+  box-shadow: 
+    0 0 80px rgba(147, 112, 219, 1),
+    0 0 160px rgba(138, 43, 226, 0.8),
+    0 0 240px rgba(75, 0, 130, 0.6),
+    inset -30px -30px 60px rgba(46, 0, 84, 0.7),
+    inset 20px 20px 40px rgba(230, 230, 250, 0.15);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.witch-moon::before {
+  content: '';
+  position: absolute;
+  top: 25px;
+  left: 35px;
+  width: 18px;
+  height: 18px;
+  background: rgba(46, 0, 84, 0.5);
+  border-radius: 50%;
+  box-shadow: 
+    35px 25px 0 -4px rgba(46, 0, 84, 0.4),
+    -12px 45px 0 -6px rgba(46, 0, 84, 0.3),
+    50px 50px 0 -8px rgba(46, 0, 84, 0.2);
+}
+
+@keyframes witch-moon-glow {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 
+      0 0 80px rgba(147, 112, 219, 1),
+      0 0 160px rgba(138, 43, 226, 0.8),
+      0 0 240px rgba(75, 0, 130, 0.6);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 100px rgba(147, 112, 219, 1.2),
+      0 0 200px rgba(138, 43, 226, 1),
+      0 0 300px rgba(75, 0, 130, 0.8);
+  }
+}
+
+/* 🕯️ PURPLE WITCH CANDLES 🕯️ */
+.theme-witch .large-candle .candle-body {
+  color: #8A2BE2;
+  filter: 
+    drop-shadow(0 0 50px rgba(138, 43, 226, 1.2))
+    drop-shadow(0 0 100px rgba(147, 112, 219, 1))
+    brightness(1.6)
+    contrast(1.4);
+}
+
+.theme-witch .candle-light {
+  background: 
+    radial-gradient(ellipse at center top, rgba(138, 43, 226, 0.3) 0%, rgba(147, 112, 219, 0.2) 30%, transparent 60%),
+    radial-gradient(ellipse at center 200px, rgba(138, 43, 226, 0.2) 0%, transparent 50%);
+}
+
+/* 🔮 FLOATING PURPLE MAGICAL ORBS 🔮 */
+.witch-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.magic-particle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: 
+    radial-gradient(circle, 
+      rgba(147, 112, 219, 1) 0%, 
+      rgba(138, 43, 226, 0.9) 30%, 
+      rgba(75, 0, 130, 0.6) 60%,
+      transparent 80%
+    );
+  border-radius: 50%;
+  animation: float-particle 15s linear infinite;
+  box-shadow: 
+    0 0 20px rgba(147, 112, 219, 1),
+    0 0 40px rgba(138, 43, 226, 0.6),
+    0 0 60px rgba(75, 0, 130, 0.4);
+}
+
+.particle-1 { left: 8%; animation-delay: 0s; }
+.particle-2 { left: 25%; animation-delay: 4s; }
+.particle-3 { left: 45%; animation-delay: 8s; }
+.particle-4 { left: 65%; animation-delay: 12s; }
+.particle-5 { left: 85%; animation-delay: 2s; }
+.particle-6 { left: 15%; animation-delay: 6s; }
+.particle-7 { left: 75%; animation-delay: 10s; }
+
+@keyframes float-particle {
+  0% { 
+    transform: translateY(100vh) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { 
+    opacity: 1;
+    transform: translateY(90vh) scale(1) rotate(45deg);
+  }
+  90% { 
+    opacity: 1;
+    transform: translateY(5vh) scale(1.2) rotate(315deg);
+  }
+  100% { 
+    transform: translateY(-10vh) scale(0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* CSS VARIABLES FOR THEMES */
+:root {
+  --color-primary: #8B0000;
+  --color-secondary: #DC143C;
+  --color-accent: #B22222;
+  --color-background: #0A0000;
+  --color-surface: #1A0000;
+  --color-text: #F5F5DC;
+  --color-text-secondary: #CD5C5C;
+  --color-border: #8B0000;
+  --color-glow: #DC143C;
+}
+
+/* WITCH THEME VARIABLES */
+.theme-witch {
+  --color-primary: #4B0082;
+  --color-secondary: #8A2BE2;
+  --color-accent: #9932CC;
+  --color-background: #1A1A2E;
+  --color-surface: #16213E;
+  --color-text: #E6E6FA;
+  --color-text-secondary: #DDA0DD;
+  --color-border: #4B0082;
+  --color-glow: #8A2BE2;
+  
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(25, 25, 112, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 30%, #0F3460 70%, #533483 100%);
+  color: var(--color-text);
+}
+
+/* MAKE WITCH COMPONENTS VISIBLE */
+.theme-witch .witch-trees,
+.theme-witch .witch-brooms,
+.theme-witch .witch-bats,
+.theme-witch .witch-cats,
+.theme-witch .witch-particles,
+.theme-witch .witch-moon {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* BRIGHT VISIBLE TREES */
+.theme-witch .twisted-tree::before {
+  background: 
+    linear-gradient(180deg, 
+      #FF8C00 0%, 
+      #FF7F50 20%,
+      #D2691E 50%, 
+      #CD853F 80%,
+      #A0522D 100%
+    ) !important;
+  box-shadow: 
+    inset -8px 0 15px rgba(0, 0, 0, 0.8),
+    0 0 15px rgba(255, 255, 255, 1),
+    0 0 30px rgba(255, 140, 0, 1),
+    0 0 60px var(--color-glow) !important;
+  border: 4px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+/* BRIGHT VISIBLE BATS */
+.theme-witch .witch-bat::before {
+  background: #DA70D6 !important;
+  box-shadow: 
+    0 0 25px rgba(218, 112, 214, 1),
+    0 0 50px var(--color-glow) !important;
+  border: 3px solid rgba(255, 255, 255, 0.6) !important;
+}
+
+.theme-witch .witch-bat::after {
+  background: #DA70D6 !important;
+  box-shadow: 
+    -30px -12px 0 -4px #DA70D6,
+    30px -12px 0 -4px #DA70D6,
+    -35px -8px 0 -5px #BA55D3,
+    35px -8px 0 -5px #BA55D3,
+    0 0 35px rgba(218, 112, 214, 1),
+    0 0 70px var(--color-glow) !important;
+}
+/* 🌲 UNCANNY REALISTIC TREES FOR WITCH THEME 🌲 */
+.theme-witch .twisted-tree {
+  width: 120px !important;
+  height: 600px !important;
+}
+
+.theme-witch .twisted-tree::before {
+  width: 35px !important;
+  height: 400px !important;
+  background: 
+    linear-gradient(180deg, 
+      #8B4513 0%, 
+      #654321 30%,
+      #3E2723 70%, 
+      #2F1B14 100%
+    ) !important;
+  border-radius: 20px 20px 0 0 !important;
+  animation: tree-sway 15s ease-in-out infinite !important;
+  box-shadow: 
+    inset -10px 0 20px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(138, 43, 226, 0.8),
+    0 0 5px rgba(255, 255, 255, 0.3) !important;
+  /* Uncanny twisted trunk shape */
+  clip-path: polygon(
+    45% 0%, 55% 0%, 
+    60% 10%, 50% 20%, 
+    65% 30%, 45% 40%, 
+    70% 50%, 40% 60%, 
+    60% 70%, 50% 80%, 
+    55% 90%, 45% 100%, 
+    55% 100%
+  ) !important;
+  border: 2px solid rgba(139, 69, 19, 0.6) !important;
+}
+
+.theme-witch .twisted-tree::after {
+  top: -20px !important;
+  width: 200px !important;
+  height: 150px !important;
+  background: 
+    radial-gradient(ellipse at center, 
+      rgba(34, 139, 34, 0.9) 0%, 
+      rgba(0, 100, 0, 0.7) 30%, 
+      rgba(0, 80, 0, 0.5) 60%,
+      transparent 80%
+    ) !important;
+  border-radius: 60% 40% 70% 30% !important;
+  animation: tree-leaves-rustle 12s ease-in-out infinite !important;
+  /* Uncanny leaf cluster shape */
+  clip-path: polygon(
+    20% 0%, 80% 0%, 
+    95% 15%, 85% 35%, 
+    100% 50%, 75% 65%, 
+    90% 85%, 60% 95%, 
+    40% 90%, 10% 80%, 
+    5% 60%, 25% 45%, 
+    0% 25%, 15% 10%
+  ) !important;
+  box-shadow: 
+    0 0 30px rgba(138, 43, 226, 0.6),
+    inset 0 0 20px rgba(0, 100, 0, 0.3) !important;
+}
+
+.theme-witch .tree-1 {
+  left: 1% !important;
+  transform: scale(1.4) rotate(-12deg) !important;
+}
+
+.theme-witch .tree-2 {
+  left: 8% !important;
+  transform: scale(0.8) rotate(18deg) !important;
+}
+
+.theme-witch .tree-3 {
+  right: 3% !important;
+  transform: scale(1.6) rotate(-20deg) !important;
+}
+
+.theme-witch .tree-4 {
+  right: 15% !important;
+  transform: scale(1.1) rotate(25deg) !important;
+}
+
+/* 🦇 LARGE PURPLE BATS FOR WITCH THEME 🦇 */
+.theme-witch .witch-bat {
+  width: 100px !important;
+  height: 50px !important;
+  animation: witch-bat-flight 30s linear infinite !important;
+}
+
+.theme-witch .witch-bat::before {
+  width: 20px !important;
+  height: 25px !important;
+  background: 
+    linear-gradient(180deg, 
+      #9370DB 0%, 
+      #8A2BE2 50%, 
+      #4B0082 100%
+    ) !important;
+  border-radius: 70% 70% 30% 30% !important;
+  box-shadow: 
+    0 0 30px rgba(147, 112, 219, 1),
+    0 0 60px rgba(138, 43, 226, 0.8),
+    inset 0 0 10px rgba(255, 255, 255, 0.2) !important;
+  border: 2px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+.theme-witch .witch-bat::after {
+  width: 100px !important;
+  height: 8px !important;
+  background: 
+    linear-gradient(90deg, 
+      transparent 0%, 
+      #9370DB 20%, 
+      #8A2BE2 50%, 
+      #9370DB 80%, 
+      transparent 100%
+    ) !important;
+  box-shadow: 
+    -40px -15px 0 -6px #9370DB,
+    40px -15px 0 -6px #9370DB,
+    -50px -10px 0 -8px #8A2BE2,
+    50px -10px 0 -8px #8A2BE2,
+    -45px -20px 0 -10px #4B0082,
+    45px -20px 0 -10px #4B0082,
+    0 0 40px rgba(147, 112, 219, 1),
+    0 0 80px rgba(138, 43, 226, 0.8) !important;
+  animation: bat-wing-flap 1.2s ease-in-out infinite !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 🌙 EERIE PURPLE MOON FOR WITCH THEME 🌙 */
+.theme-witch .witch-moon {
+  top: 5% !important;
+  right: 8% !important;
+  width: 280px !important;
+  height: 280px !important;
+  background: 
+    radial-gradient(circle at 35% 25%, 
+      #E6E6FA 0%, 
+      #DDA0DD 10%, 
+      #9370DB 30%, 
+      #8A2BE2 50%,
+      #4B0082 70%, 
+      #2E0054 85%,
+      #1A0033 100%
+    ) !important;
+  animation: witch-moon-glow 15s ease-in-out infinite !important;
+  box-shadow: 
+    0 0 100px rgba(147, 112, 219, 1.2),
+    0 0 200px rgba(138, 43, 226, 1),
+    0 0 300px rgba(75, 0, 130, 0.8),
+    inset -40px -40px 80px rgba(46, 0, 84, 0.8),
+    inset 25px 25px 50px rgba(230, 230, 250, 0.2) !important;
+  border: 3px solid rgba(147, 112, 219, 0.6) !important;
+}
+
+.theme-witch .witch-moon::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  width: 25px;
+  height: 25px;
+  background: rgba(46, 0, 84, 0.6);
+  border-radius: 50%;
+  box-shadow: 
+    45px 30px 0 -5px rgba(46, 0, 84, 0.5),
+    -15px 55px 0 -8px rgba(46, 0, 84, 0.4),
+    65px 65px 0 -10px rgba(46, 0, 84, 0.3),
+    20px 80px 0 -6px rgba(46, 0, 84, 0.4);
+}
+
+@keyframes witch-moon-glow {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 
+      0 0 100px rgba(147, 112, 219, 1.2),
+      0 0 200px rgba(138, 43, 226, 1),
+      0 0 300px rgba(75, 0, 130, 0.8);
+  }
+  50% { 
+    transform: scale(1.08);
+    box-shadow: 
+      0 0 130px rgba(147, 112, 219, 1.5),
+      0 0 260px rgba(138, 43, 226, 1.3),
+      0 0 400px rgba(75, 0, 130, 1);
+  }
+}
+/* 🕷️ CRAWLING SPIDERS 🕷️ */
+.crawling-spiders {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.spider {
+  position: absolute;
+  font-size: 3rem;
+  color: #2B0000;
+  filter: drop-shadow(0 0 15px rgba(220, 20, 60, 0.8));
+}
+
+.spider-1 {
+  left: 5%;
+  animation: spider-crawl-vertical 20s linear infinite;
+  animation-delay: 0s;
+}
+
+.spider-2 {
+  right: 8%;
+  animation: spider-crawl-vertical 25s linear infinite reverse;
+  animation-delay: 5s;
+}
+
+.spider-3 {
+  left: 15%;
+  animation: spider-crawl-vertical 18s linear infinite;
+  animation-delay: 10s;
+}
+
+.spider-4 {
+  right: 20%;
+  animation: spider-crawl-vertical 22s linear infinite reverse;
+  animation-delay: 3s;
+}
+
+@keyframes spider-crawl-vertical {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(25vh) rotate(90deg);
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg);
+  }
+  75% {
+    transform: translateY(75vh) rotate(270deg);
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px)) rotate(360deg);
+    opacity: 0;
+  }
+}
+/* 🩸 BLOOD CURSOR TRAIL 🩸 */
+body {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="8" fill="%23DC143C" opacity="0.8"/><circle cx="10" cy="10" r="4" fill="%23B22222"/></svg>') 10 10, auto;
+}
+
+.blood-trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #DC143C 0%, #8B0000 70%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: blood-fade 2s ease-out forwards;
+}
+
+@keyframes blood-fade {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.3); }
+}
+
+/* 💥 SCREEN CRACK EFFECT 💥 */
+.screen-crack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background: 
+    linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.3) 49%, rgba(255,255,255,0.3) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.2) 49%, rgba(255,255,255,0.2) 51%, transparent 52%);
+  opacity: 0;
+  animation: crack-flash 0.3s ease-out;
+}
+
+@keyframes crack-flash {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* 🌫️ ROLLING FOG 🌫️ */
+.rolling-fog {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 150px;
+  background: 
+    radial-gradient(ellipse at center bottom, rgba(128, 128, 128, 0.4) 0%, transparent 70%),
+    radial-gradient(ellipse at 30% bottom, rgba(105, 105, 105, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% bottom, rgba(119, 136, 153, 0.3) 0%, transparent 60%);
+  animation: fog-roll 20s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes fog-roll {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+/* ⚡ LIGHTNING FLASH ⚡ */
+.lightning-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+.lightning-active {
+  animation: lightning-strike 0.4s ease-out;
+}
+
+@keyframes lightning-strike {
+  0% { opacity: 0; }
+  10% { opacity: 0.9; }
+  20% { opacity: 0; }
+  30% { opacity: 0.7; }
+  40% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* 👻 MOVING SHADOWS 👻 */
+.moving-shadows {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shadow {
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  background: linear-gradient(45deg, transparent 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+  animation: shadow-move 15s linear infinite;
+}
+
+.shadow-1 { left: -100px; animation-delay: 0s; }
+.shadow-2 { left: -100px; animation-delay: 5s; }
+.shadow-3 { left: -100px; animation-delay: 10s; }
+
+@keyframes shadow-move {
+  0% { transform: translateX(0) skewX(-20deg); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { transform: translateX(calc(100vw + 100px)) skewX(-20deg); opacity: 0; }
+}
+/* 💻 VINTAGE TERMINAL STYLING 💻 */
+.terminal-text {
+  font-family: 'Courier New', monospace;
+  color: #00FF00;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  border: 1px solid #00FF00;
+  text-shadow: 0 0 10px #00FF00;
+  animation: terminal-flicker 2s infinite;
+}
+
+@keyframes terminal-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* 🔀 GLITCH TEXT ANIMATIONS 🔀 */
+.glitch-text {
+  position: relative;
+  animation: glitch-shake 0.3s ease-in-out infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  animation: glitch-1 0.5s infinite;
+  color: #ff0000;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch-2 0.5s infinite;
+  color: #00ffff;
+  z-index: -2;
+}
+
+@keyframes glitch-shake {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+}
+
+/* 🩸 BLEEDING TEXT 🩸 */
+.bleeding-text {
+  position: relative;
+  animation: text-bleed 3s ease-in-out infinite;
+}
+
+.bleeding-text::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(to bottom, rgba(220, 20, 60, 0.8) 0%, transparent 100%);
+  animation: blood-drip 2s ease-in-out infinite;
+}
+
+@keyframes text-bleed {
+  0%, 100% { color: inherit; }
+  50% { color: #DC143C; text-shadow: 0 0 10px #DC143C; }
+}
+
+@keyframes blood-drip {
+  0% { height: 0; opacity: 0; }
+  50% { height: 15px; opacity: 1; }
+  100% { height: 0; opacity: 0; }
+}
+
+/* 📱 PHANTOM NOTIFICATIONS 📱 */
+.phantom-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(220, 20, 60, 0.9);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  animation: phantom-appear 4s ease-in-out forwards;
+}
+
+@keyframes phantom-appear {
+  0% { opacity: 0; transform: translateX(100%); }
+  20% { opacity: 1; transform: translateX(0); }
+  80% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+
+/* 🔥 FLICKERING LIGHTS 🔥 */
+.flickering-light {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 255, 0, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  animation: light-flicker 0.1s infinite;
+}
+
+@keyframes light-flicker {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+/* 💀 JUMP SCARE SHAKE 💀 */
+.jump-scare {
+  animation: jump-shake 0.5s ease-in-out;
+}
+
+@keyframes jump-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-2px, -2px) rotate(-1deg); }
+  20% { transform: translate(2px, -2px) rotate(1deg); }
+  30% { transform: translate(-2px, 2px) rotate(0deg); }
+  40% { transform: translate(2px, 2px) rotate(1deg); }
+  50% { transform: translate(-2px, -2px) rotate(-1deg); }
+  60% { transform: translate(2px, -2px) rotate(0deg); }
+  70% { transform: translate(-2px, 2px) rotate(-1deg); }
+  80% { transform: translate(2px, 2px) rotate(1deg); }
+  90% { transform: translate(-2px, -2px) rotate(0deg); }
+}
+
+/* ⚠️ SYSTEM ERROR MESSAGES ⚠️ */
+.system-error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: #FF0000;
+  padding: 20px;
+  border: 2px solid #FF0000;
+  font-family: 'Courier New', monospace;
+  z-index: 9999;
+  animation: error-flash 3s ease-in-out forwards;
+}
+
+@keyframes error-flash {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
