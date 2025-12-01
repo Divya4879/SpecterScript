@@ -5,7 +5,7 @@ import { useState, useCallback } from 'react';
 interface UploadZoneProps {
   onFileAccepted: (file: File) => void;
   isProcessing: boolean;
-  processingStage: 'idle' | 'extracting' | 'haunting' | 'complete';
+  processingStage: 'idle' | 'extracting' | 'syllabus' | 'choosing' | 'haunting' | 'complete';
   disabled?: boolean;
 }
 
