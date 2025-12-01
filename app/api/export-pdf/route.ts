@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import PDFDocument from 'pdfkit';
-import { clearBuffer } from '@/lib/fileCleanup';
 import { applySecurityHeaders, validateCors, applyCorsHeaders } from '@/lib/securityHeaders';
 
 /**
@@ -14,8 +13,6 @@ export async function OPTIONS(request: NextRequest): Promise<NextResponse> {
 }
 
 export async function POST(request: NextRequest) {
-  let pdfBuffer: Buffer | null = null;
-
   try {
     // Validate CORS - reject cross-origin requests
     validateCors(request);
@@ -111,7 +108,7 @@ export async function POST(request: NextRequest) {
     doc.end();
 
     // Wait for PDF generation to complete
-    pdfBuffer = await pdfPromise;
+    const pdfBuffer = await pdfPromise;
 
     // Return the PDF as a response
     const response = new NextResponse(new Uint8Array(pdfBuffer), {
@@ -124,18 +121,8 @@ export async function POST(request: NextRequest) {
     applySecurityHeaders(response.headers);
     applyCorsHeaders(response.headers, request);
 
-    // Clear buffer after sending response
-    if (pdfBuffer) {
-      clearBuffer(pdfBuffer);
-      // Clear chunks array
-      chunks.forEach(chunk => clearBuffer(chunk));
-    }
-
     return response;
   } catch (error) {
-    // Ensure cleanup on error
-    if (pdfBuffer) clearBuffer(pdfBuffer);
-
     console.error('PDF export error:', error);
     const response = NextResponse.json(
       { error: 'Failed to generate PDF' },
