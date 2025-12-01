@@ -49,12 +49,12 @@ BloodBound Academy is a Halloween-themed web application built for the **Kirowee
 - **Smart Volume Control**: Optimized levels for each sound type
 - **Audio Toggle**: Mute/unmute control respecting browser policies
 
-### 🤖 AI-Powered Processing
+### 🤖 Syllabus Processing
 - **Gemini 2.5 Pro Integration**: Advanced AI for content transformation
 - **OCR Text Extraction**: Tesseract.js extracts text from images with smart processing
 - **Syllabus Analysis**: Extracts course structure and learning objectives
 - **Lesson Plan Generation**: Creates comprehensive educational content
-- **Multiple Export Formats**: PDF, Markdown, and plain text downloads
+- **Multiple Export Formats**: Markdown, and plain text downloads
 
 ### 🔧 Technical Features
 - **Drag & Drop Upload**: Intuitive file upload with visual feedback
@@ -63,6 +63,8 @@ BloodBound Academy is a Halloween-themed web application built for the **Kirowee
 - **Responsive Design**: Works on desktop and mobile devices
 - **Type Safety**: Full TypeScript implementation
 - **Performance Optimized**: Efficient rendering and audio management
+
+---
 
 ## 🚀 Quick Start
 
@@ -75,7 +77,7 @@ BloodBound Academy is a Halloween-themed web application built for the **Kirowee
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/specter-script.git
+   git clone https://github.com/Divya4879/SpecterScript.git
    cd specter-script
    ```
 
@@ -101,6 +103,8 @@ BloodBound Academy is a Halloween-themed web application built for the **Kirowee
 5. **Open application**
    Navigate to `http://localhost:3000`
 
+---
+
 ## 🎮 Usage Guide
 
 ### 1. Landing Page
@@ -109,9 +113,9 @@ BloodBound Academy is a Halloween-themed web application built for the **Kirowee
 - **Feature Overview**: Three cards showcasing Ancient Tome Harvest, AI Sorcery, and Arcane Harvest
 
 ### 2. Generator Interface
-- **Sacrificial Altar**: Drag and drop PDF files (up to 10MB)
+- **Sacrificial Altar**: Drag and drop images of your syllabus (up to 10MB)
 - **Visual Feedback**: Animated upload zone with spirit orbs and gothic styling
-- **File Validation**: Accepts PDF files with spooky error messages for invalid uploads
+- **File Validation**: Accepts img files with spooky error messages for invalid uploads
 
 ### 3. Processing Experience
 - **Heartbeat Audio**: Intensifying heartbeat during AI processing
@@ -127,9 +131,11 @@ BloodBound Academy is a Halloween-themed web application built for the **Kirowee
 - **Text Effects**: Random glitch, bleeding, and terminal-style text
 
 ### 5. Export Options
-- **Multiple Formats**: Download as PDF, Markdown, or plain text
+- **Multiple Formats**: Download as Markdown, or plain text
 - **Gothic Styling**: Export controls match vampire theme
 - **Audio Feedback**: Page turn sounds on export actions
+
+---
 
 ## 🏗️ Architecture
 
@@ -141,34 +147,104 @@ BloodBound Academy is a Halloween-themed web application built for the **Kirowee
 
 ### Backend Services
 - **API Routes**: Serverless functions for file processing
-- **Gemini AI**: Google's advanced language model for content transformation
+- **Gemini AI API**: Google's advanced language model for content transformation
 - **PDF Processing**: Text extraction and validation
 - **Audio Management**: Preloaded sound effects with smart playback
 
 ### File Structure
 ```
 specter-script/
-├── .kiro/specs/           # Kiro development specifications
+├── .kiro/                 # Kiro development specifications
+│   │   ├── specs/
+│   │   │   ├── bloodbound-academy/
+│   │   │   │   ├── requirements.md
+│   │   │   │   └── design.md
+│   │   │   │   └── tasks.md
 ├── app/
 │   ├── api/               # API routes (upload, haunt, export)
+│   │   ├── upload/
+│   │   ├── haunt/
+│   │   ├── export/
+│   │   │   ├── docx/
+│   │   │   └── txt/
+│   │   └── audio/
 │   ├── generator/         # Main generator page
 │   ├── globals.css        # Global styles and vampire theme
+│   ├── vampire-theme.css  # Dedicated vampire theme
 │   └── layout.tsx         # Root layout with gothic fonts
 ├── components/
-│   ├── AncientScrollViewer.tsx    # Parchment scroll display
-│   ├── AudioManager.tsx           # Horror sound system
-│   ├── HauntingEffects.tsx       # Interactive effects
-│   ├── UploadZone.tsx            # File upload interface
-│   └── VampireAudio.tsx          # Ambient vampire sounds
+│   ├── ui/               # Reusable UI components
+│   ├── upload/           # Upload-related components
+│   │   ├── UploadZone.tsx
+│   │   ├── FilePreview.tsx
+│   │   └── ProgressBar.tsx
+│   ├── viewer/           # Content viewing components
+│   │   ├── AncientScrollViewer.tsx
+│   │   ├── SyllabusViewer.tsx
+│   │   └── TextRenderer.tsx
+│   ├── audio/            # Audio-related components
+│   │   ├── AudioManager.tsx
+│   │   ├── VampireAudio.tsx
+│   │   └── SoundEffects.tsx
+│   ├── effects/          # Visual effects components
+│   │   ├── HauntingEffects.tsx
+│   │   └── ParticleSystem.tsx
+│   ├── export/           # Export-related components
+│   │   ├── ExportControls.tsx
+│   │   └── FormatSelector.tsx
+│   ├── theme/            # Theme-related components
+│   │   ├── ThemeSelector.tsx
+│   │   └── ThemePreview.tsx
+│   └── __tests__/        # Component tests
 ├── hooks/
-│   └── useTheme.ts        # Theme management
+│   ├── useTheme.ts       # Theme management
+│   ├── useAudio.ts       # Audio management
+│   ├── useUpload.ts      # File upload
+│   └── useExport.ts      # Export functionality
 ├── lib/
-│   ├── chunking.ts        # Text processing utilities
-│   ├── export.ts          # File export functions
-│   └── validation.ts      # Input validation
-└── public/
-    └── *.mp3             # 14 horror sound effects
+│   ├── core/             # Core functionality
+│   │   ├── chunking.ts
+│   │   ├── validation.ts
+│   │   └── pageDivision.ts
+│   ├── export/           # Export utilities
+│   │   ├── docx.ts
+│   │   └── txt.ts
+│   ├── audio/            # Audio utilities
+│   │   ├── soundManager.ts
+│   │   └── effects.ts
+│   ├── theme/            # Theme system
+│   │   ├── themes.ts
+│   │   └── themeEngine.ts
+│   ├── utils/            # General utilities
+│   │   ├── retry.ts
+│   │   ├── textSanitization.ts
+│   │   └── fileUtils.ts
+│   └── security/         # Security utilities
+│       ├── securityHeaders.ts
+│       └── sanitization.ts
+├── public/
+│   ├── audio/            # Organized audio files
+│   │   ├── ambient/      # vampire.mp3, wind.mp3, heartbeat.mp3
+│   │   ├── effects/      # thunder.mp3, glass-break.mp3, etc.
+│   │   └── ui/           # click.mp3, hover.mp3
+│   ├── images/
+│   └── fonts/
+├── styles/
+│   ├── themes/           # Theme-specific styles
+│   ├── components/       # Component-specific styles
+│   └── utilities/        # Utility classes
+├── types/                # TypeScript definitions
+│   ├── audio.ts
+│   ├── export.ts
+│   ├── theme.ts
+│   └── global.ts
+├── config/               # Configuration files
+│   ├── audio.ts
+│   ├── themes.ts
+│   └── constants.ts
 ```
+
+---
 
 ## 🎨 Design System
 
@@ -192,7 +268,9 @@ specter-script/
 - **Text Glitches**: Corruption and self-correction effects
 - **Floating Elements**: Smooth movement of atmospheric objects
 
-## 🔊 Audio Design
+---
+
+## 🔊 Audio Effects
 
 ### Ambient Layers
 - **Vampire Atmosphere**: Base ambient horror soundscape
@@ -212,13 +290,14 @@ specter-script/
 - **Browser Compliance**: Respects autoplay policies
 - **Performance**: Efficient audio management without memory leaks
 
+---
+
 ## 🧪 Testing
 
 ### Test Coverage
 - **Component Tests**: React Testing Library for UI components
 - **Utility Tests**: Jest for business logic functions
 - **API Tests**: Integration tests for backend routes
-- **Audio Tests**: Mocked audio functionality testing
 
 ### Running Tests
 ```bash
@@ -231,6 +310,8 @@ npm run test:coverage
 # Run specific test file
 npm test -- AncientScrollViewer.test.tsx
 ```
+
+---
 
 ## 🚀 Deployment
 
@@ -254,7 +335,9 @@ GEMINI_API_KEY=your_gemini_api_key
 NEXT_PUBLIC_APP_URL=https://your-domain.com
 ```
 
-## 🎯 Kiroween Hackathon Integration
+---
+
+## 🎯 Kiroween Hackathon Submission
 
 ### Kiro Spec-Driven Development
 This project showcases effective use of Kiro's spec-driven development approach:
@@ -283,31 +366,20 @@ This project showcases effective use of Kiro's spec-driven development approach:
 - **Responsiveness**: Works across different screen sizes
 - **Error Handling**: Graceful fallbacks with themed error messages
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+---
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+---
+
 ## 🙏 Acknowledgments
 
-- **Kiroween Hackathon**: For inspiring this spooky creation
+- **[Kiroween Hackathon](https://kiroween.devpost.com)**: For inspiring this spooky creation
 - **Google Gemini AI**: For powerful content transformation capabilities
-- **Horror Sound Libraries**: For atmospheric audio effects
+- **Horror Sound Libraries**: For all the awesome free audio files
 - **Gothic Font Designers**: For authentic medieval typography
-- **Open Source Community**: For the amazing tools and libraries
-
-## 📞 Contact
-
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Email**: your.email@example.com
-- **Demo**: [Live Application](https://specter-script.vercel.app)
 
 ---
 
